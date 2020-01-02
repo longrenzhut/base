@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(builder: (d) => Counter()),
+        ChangeNotifierProvider(create: (d) => Counter()),
       ],
       child: Consumer<Counter>(
         builder: (context, counter, _) {

@@ -7,11 +7,8 @@ import 'package:hydhome/base/router/RouterHepler.dart';
 import 'package:hydhome/base/utils/Adapt.dart';
 import 'package:hydhome/base/utils/ImageHelper.dart';
 import 'package:hydhome/base/utils/MyColors.dart';
-import 'package:hydhome/base/utils/UIHelper.dart';
-import 'package:hydhome/base/widget/list/ListZ.dart';
 import 'package:hydhome/base/widget/view/CheckBotton.dart';
 import 'package:hydhome/ui/bar/view_model/PostDetailModel.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class PosDetailPage extends BasePage{
 
@@ -33,10 +30,13 @@ class PosDetailPage extends BasePage{
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          ImageHelper.iconBtn(
-              "back", width: 28, height: 28, f: (){
-            RouterHepler.pop(mContext);
-          }),
+          Positioned(
+            left: Adapt.setWidth(4),
+            child: ImageHelper.iconBtn(
+                "back", width: 28, height: 28, f: (){
+              RouterHepler.pop(mContext);
+            }),
+          ),
           Positioned(
             right: Adapt.setWidth(12),
             child: CheckBotton("楼主",
