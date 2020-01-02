@@ -11,6 +11,7 @@ import 'base/cache/Cache.dart';
 import 'main/Application.dart';
 
 void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   Application.init();
   await Cache.initSp();
   runApp( App()
