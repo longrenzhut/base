@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hydhome/base/provider/view_state_model.dart';
+import 'BaseViewModel.dart';
 import 'package:provider/provider.dart';
 
 
-class ProviderWidget<T extends ViewStateModel> extends StatefulWidget {
+
+class ProviderWidget<T extends BaseViewModel> extends StatefulWidget {
   final ValueWidgetBuilder<T> builder;
   final T model;
   final Widget child;
@@ -24,7 +25,7 @@ class ProviderWidget<T extends ViewStateModel> extends StatefulWidget {
   _ProviderWidgetState<T> createState() => _ProviderWidgetState<T>();
 }
 
-class _ProviderWidgetState<T extends ViewStateModel>
+class _ProviderWidgetState<T extends BaseViewModel>
     extends State<ProviderWidget<T>> with AutomaticKeepAliveClientMixin{
   T model;
 
@@ -43,7 +44,6 @@ class _ProviderWidgetState<T extends ViewStateModel>
 
   @override
   Widget build(BuildContext context) {
-
     return ChangeNotifierProvider<T>.value(
       value: model,
       child: Consumer<T>(
@@ -62,7 +62,7 @@ class _ProviderWidgetState<T extends ViewStateModel>
 
 typedef ValueWidgetBuilder2<A,B> = Widget Function(BuildContext context, A model1, B model2, Widget child);
 
-class ProviderWidget2<A extends ViewStateModel, B extends ChangeNotifier>
+class ProviderWidget2<A extends BaseViewModel, B extends ChangeNotifier>
     extends StatefulWidget{
 
 
@@ -91,7 +91,7 @@ class ProviderWidget2<A extends ViewStateModel, B extends ChangeNotifier>
   _ProviderWidgetState2<A, B> createState() => _ProviderWidgetState2<A, B>();
 }
 
-class _ProviderWidgetState2<A extends ViewStateModel, B extends ChangeNotifier>
+class _ProviderWidgetState2<A extends BaseViewModel, B extends ChangeNotifier>
     extends State<ProviderWidget2<A, B>> with AutomaticKeepAliveClientMixin {
   A model1;
   B model2;

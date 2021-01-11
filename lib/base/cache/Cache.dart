@@ -1,6 +1,5 @@
 
 import 'dart:collection';
-import 'dart:math';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,7 +22,7 @@ class Cache{
 
   static SharedPreferences cache;
 
-  static initSp() async{
+  static Future initSp() async{
     cache = await SharedPreferences.getInstance();
   }
 
@@ -39,29 +38,31 @@ class Cache{
   /**
    * 设置值
    */
-  void put(String key, String value){
+  void put(String key, String value) async{
     String newValue = cacheMap[key];
     if(null != newValue && newValue == value){
       return;
     }
     cacheMap[key]  = value;
-    Cache.cache.setString(key,value);
+    await cache.setString(key,value);
   }
 
 
-  String getString(String key, {String defalut = ""}){
+
+
+  String getString(String key, {String defalut = ""}) {
     String newValue = cacheMap[key];
     if(null != newValue)
       return  newValue;
-    if(Cache.cache.containsKey(key)) {
+//    if(cache.containsKey(key)) {
       String value = Cache.cache.getString(key);
       if (null != value) {
         cacheMap[key] = value;
         return value;
       }
-      else
-        return defalut;
-    }
+//      else
+//        return defalut;
+//    }
     else{
       return defalut;
     }
@@ -83,13 +84,13 @@ class Cache{
 
   void clear(){
     cacheMap.clear();
-    Cache.cache.clear();
+    cache.clear();
   }
 
 
-  void remove(String key){
-    cacheMap.remove(key);
-    Cache.cache.remove(key);
+  void remove(String key) async{
+    cacheMap?.remove(key);
+   await cache?.remove(key);
   }
 
 //  <T> void putEntity(String key, T entity) {
@@ -102,6 +103,7 @@ class Cache{
 //      return null;
 //    return new Gson().fromJson(value, tClass);
 //  }
+
 
 
 

@@ -1,99 +1,63 @@
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:hydhome/base/Config.dart';
-import 'package:hydhome/base/provider/view_state_model.dart';
+import '../utils/ToastUtil.dart';
+
 
 class ReqCallBack {
 
-  Function(List<dynamic> list) onListSuccess;
-  Function(Map<String,dynamic> map) onSuccess;
-  Function onError;
-  Function(int code) onFailed;
-  VoidCallback onCompleted;
-  ViewStateModel _viewStateModel;
+  final Function(dynamic data) onSuccess;
+  final Function() onError;
+  final Function(int code) onFailed;
+  final VoidCallback onCompleted;
+
+  String key;
+  bool isPaging;
+  bool isToast;
 
 
-  ViewStateModel get viewStateModel => _viewStateModel;
-
-  ReqCallBack setViewModel(ViewStateModel value) {
-    _viewStateModel = value;
-    return this;
-  }
-
-  bool isToast = true;
-
-  String key = "records";
-
-  bool isList = false;
 
   ReqCallBack({
-    this.onListSuccess,
     this.onSuccess,
     this.onError,
     this.onFailed,
     this.onCompleted,
-    this.isToast: true,
-    this.key: "records",
-    this.isList: false,
+    this.key:"records",
+    this.isPaging:false,
   });
 
 
-  void onReqError(e, stackTrace, {String message}) {
+
+  void onReqError(e) {
     if(e != null)
       debugPrint('error--->\n' + e.toString());
-    if(stackTrace != null)
-      debugPrint('statck--->\n' + stackTrace.toString());
     if(null != onError)
       onError();
 
-    _viewStateModel?.setError();
+    if(isToast){
+//      ToastUtil.showToast("网络错误");
+    }
   }
 
   void onReqCompleted() {
+    ToastUtil.dismiss();
     if(null != onCompleted)
       onCompleted();
 
+
   }
 
-  void onReqFailed(int code) {
+  void onReqFailed(int code,String msg) {
     if(null != onFailed)
       onFailed(code);
-
   }
 
-  void onReqSuccess(Map<String, dynamic> map) {
-    var result = map["result"];
-
-    String str;
-    if(Config.DEVELOP || Config.PRE || Config.TEST){
-      str = result.toString();
-    }
-
-    if(result is List){
-      if(null != onListSuccess)
-        onListSuccess(result);
-    }
-    else{
-      if(isList){
-        var value = result[key];
-        if(value is List) {
-          if(null != onListSuccess)
-            onListSuccess(value);
-        }
-        else{
-          if(null != onSuccess)
-            onSuccess(value);
-        }
-      }
-      else{
-        if(null != onSuccess)
-          onSuccess(result);
-      }
-    }
-    _viewStateModel?.setIdle();
+  void onReqSuccess(result) {
+    if(isPaging)
+      onSuccess?.call(result[key]);
+    else
+      onSuccess?.call(result);
   }
-
-
 
 
 }

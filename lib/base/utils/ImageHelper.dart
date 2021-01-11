@@ -1,83 +1,98 @@
+
+
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hydhome/base/utils/UIHelper.dart';
-
-import 'Adapt.dart';
+import '../utils/BaseUtils.dart';
 
 class ImageHelper {
-  static String png(String name) {
-    return "assets/images/$name.png";
+
+  static String png(String name){
+    return "images/image_zt/$name";
   }
 
-  static Widget icon(String name, {double width, double height, BoxFit boxFit = BoxFit.fitHeight}) {
-    var w = width == double.infinity ? double.infinity: Adapt.setWidth(width);
-    var h = height == double.infinity ? double.infinity: Adapt.setWidth(height);
-    return Image.asset(
-      png(name),
-      width: w,
-      height: h,
-      fit: boxFit,
-    );
+  static Image loadAssert(String name,{double height,double width}){
+
+    return Image.asset(png(name),height: height, width: width,);
   }
 
-  static IconButton iconBtn(String name,{double width, double height
-    ,Function f
-    ,Alignment alignment = Alignment.centerLeft
-    ,EdgeInsets padding = const EdgeInsets.all(8)
-  }) {
-    return IconButton(
-        alignment: alignment,
-        color: Colors.white,
-        icon: ImageHelper.icon(name,width: width,height: height),
-        splashColor: Colors.grey[100],
-        highlightColor: Colors.grey[100],
-        padding: padding,
-        onPressed: f,
-    );
+  static AssetImage assetImage(String name,{double height,double width}){
+
+    return AssetImage(png(name));
   }
 
-  static Widget loadWH(String url,{Object width,Object height}){
-    if(url.isEmpty)
-      return  Container(
-        width: Adapt.setWidth(width),
-        height: Adapt.setWidth(width),
-        color: Colors.grey[500],
+
+  static Widget load(String url,{double width,double height,String placeholder: "ic_placeholder.png"}) {
+    if (BaseUtils.isEmpty(url)) {
+      return Container(
+        width: width,
+        height: height,
+        child: loadAssert(placeholder, width: width, height: height),
       );
-    Object newWidth = width == 0 ? null :Adapt.setWidth(width);
-    return CachedNetworkImage(
-      imageBuilder: (context,provider){
-        return Image(image: provider, width: newWidth,height: Adapt.setWidth(height),
-            fit:BoxFit.fitWidth);
-      },
-      imageUrl: url,
-//      placeholder: (context, url) => CircularProgressIndicator(),
-      errorWidget: (context, url, error) => Icon(Icons.error),
-    );
-  }
+    }
 
-  static Widget loadCircle(String url,width){
-    if(url.isEmpty)
-      return  Container(
-        width: Adapt.setWidth(width),
-        height: Adapt.setWidth(width),
-        decoration: UIHelper.boxDecoration(
-            radius: Adapt.setWidth(width)/2 + 10,
-            soildColor: Colors.grey[500]
-        ),
-      );
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(Adapt.setWidth(width)/2),
+    return Container(
+      width: width,
+      height: height,
       child: CachedNetworkImage(
-        imageBuilder: (context,provider){
-          return Image(image: provider, width: Adapt.setWidth(width),height: Adapt.setWidth(width),
-          fit: BoxFit.fitWidth,);
-        },
+        fit: BoxFit.fitWidth,
+        height: height,
+        width: width,
+//      imageBuilder: (context,provider){
+//        var t = provider;
+//        return Image(image: provider, width: width,height: height,
+//            fit:BoxFit.fill);
+//      },
         imageUrl: url,
-
-//      placeholder: (context, url) => CircularProgressIndicator(),
+        placeholder: (context, url){
+            return  Center(
+              child: Container(
+                child: CircularProgressIndicator(),
+              ),
+            );
+        },
         errorWidget: (context, url, error) => Icon(Icons.error),
       )
+
     );
   }
+
+//  http://oss.zcabc.com/oa/M00/00/00/rBAKdF6G_BOAcywWAAvea_OGt2M422.jpg
+
+  static Widget loadCircle(String url,width){
+    return ClipOval(
+      child:  CachedNetworkImage(
+        width: width,
+        imageUrl: url,
+        fit: BoxFit.cover,
+        placeholder: (context, url) => CircularProgressIndicator(),
+        errorWidget: (context, url, error) => Icon(Icons.error),
+      ),
+    );
+  }
+//  static Widget loadCircle(String url,width){
+//    if(BaseUtils.isEmpty(url))
+//      return  Container(
+//        width: Adapt.setWidth(width),
+//        height: Adapt.setWidth(width),
+//        decoration: UIHelper.boxDecorationAllRadius(
+//            radius: Adapt.setWidth(width)/2,
+//            solid: Colors.grey[500]
+//        ),
+//      );
+//    return ClipRRect(
+//        borderRadius: BorderRadius.circular(Adapt.setWidth(width)/2),
+//        child: CachedNetworkImage(
+//          imageBuilder: (context,provider){
+//            return Image(image: provider, width: Adapt.setWidth(width),height: Adapt.setWidth(width),
+//              fit: BoxFit.fitWidth,);
+//          },
+//          imageUrl: url,
+//
+////      placeholder: (context, url) => CircularProgressIndicator(),
+//          errorWidget: (context, url, error) => Icon(Icons.error),
+//        )
+//    );
+//  }
 
 }

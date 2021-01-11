@@ -1,35 +1,33 @@
 
+import '../utils/MyColors.dart';
 import 'package:flutter/material.dart';
 
-abstract class BaseAdapter<T>{
+ class BaseAdapter<T>{
 
   List<T> data;
 
-  List<Widget> _headers;
+  Widget header;
 
   bool isClick = true;
+  double divider;
+  Color dividerColor = MyColors.cl_A5AAB4;
 
-  Function(int index,T model) onItemClick;
+  Function(BuildContext context,int index,T model) onItemClick;
+
+  Widget Function(BuildContext context,int index, T model) builder;
 
   BaseAdapter({
     this.data,
     this.isClick = true,
     this.onItemClick,
-  }) {
-  }
+    this.builder,
+    this.header,
+    this.divider = 0,
+    this.dividerColor,
+  });
 
-  void setHeaders(List<Widget> _headers){
-    this._headers = _headers;
-  }
 
-  void setHeader(Widget _header){
-    if(_headers == null)
-      this._headers = [];
-    this._headers.clear();
-    this._headers.add(_header);
-  }
-
-  void setOnItemCallback(Function(int index,T model) onItemClick){
+  void setOnItemCallback(Function(BuildContext context,int index,T model) onItemClick){
     this.onItemClick = onItemClick;
   }
 
@@ -44,7 +42,7 @@ abstract class BaseAdapter<T>{
 
   int getHeaderCount(){
 
-    return (null == _headers ? 0 : _headers.length);
+    return (null == header ? 0 : 1);
   }
 
   int getItemCount(){
@@ -54,7 +52,7 @@ abstract class BaseAdapter<T>{
 
   Widget onBindViewHolderHeader(BuildContext context, int index){
 
-    return _headers[index];
+    return header;
   }
 
   Widget onCreateViewHolder(BuildContext context, int index) {
@@ -64,16 +62,29 @@ abstract class BaseAdapter<T>{
 
     T model = data[index - getHeaderCount()];
     return !isClick?
-    onBindViewHolder(context,index,model):
-    InkWell(
-      onTap: (){
-        if(null != onItemClick)
-          onItemClick(index,model);
-        else
-          onItemClicked(context,index,model);
-      },
-      child: onBindViewHolder(context,index,model),
-    );
+    builder(context,index,model):
+//        Ink(
+//          width: double.minPositive,
+//          color: MyColors.white,
+//            child:
+            InkWell(
+
+//      customBorder:ContinuousRectangleBorder(
+//        side: BorderSide(
+//          color: Colors.white,
+//          style: BorderStyle.solid,
+//        )
+//      ),
+              onTap: (){
+                if(null != onItemClick)
+                  onItemClick(context,index,model);
+                else
+                  onItemClicked(context,index,model);
+              },
+              child: builder(context,index,model),
+//            ),
+        );
+
   }
 
   void onItemClicked(BuildContext context, int index,T model){
@@ -81,14 +92,5 @@ abstract class BaseAdapter<T>{
   }
 
 
-  Widget onBindViewHolder(BuildContext context, int index,T model);
-
-  double getDividerHeight(){
-    return 0;
-  }
-
-  Color getDividerColor(){
-    return Colors.transparent;
-  }
 
 }
