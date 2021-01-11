@@ -3,7 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hydhome/base/provider/BaseViewModel.dart';
+import '../provider/BaseViewModel.dart';
 import '../provider/provider_widget.dart';
 import '../utils/BaseUtils.dart';
 import '../utils/ImageHelper.dart';

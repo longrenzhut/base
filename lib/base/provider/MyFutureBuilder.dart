@@ -1,7 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:hydhome/base/provider/BaseViewModel.dart';
-import '../provider/view_state_widget.dart';
+import '../provider/BaseViewModel.dart';
+import '../provider/StateWidget.dart';
 
 class MyFutureBuilder<T> extends FutureBuilder<T>{
 
@@ -22,7 +22,7 @@ class MyFutureBuilder<T> extends FutureBuilder<T>{
       key: key,
       future: future,
       builder: (BuildContext context, AsyncSnapshot snapshot){
-        if(!(model?.isFirst??true)){
+        if(!(model?.init??true)){
           return asyncBuilder(context,snapshot);
         }
 
@@ -40,20 +40,6 @@ class MyFutureBuilder<T> extends FutureBuilder<T>{
               );
             }
             else{
-//              if(model?.error??false){
-//                return errorBuilder??ViewStateErrorWidget(
-//                  onPressed: (){
-//                    model?.notifyWidget();
-//                  },
-//                );
-//              }
-//              else if(model?.failed??false){
-//                return selfBuilder??ViewStateErrorWidget(
-//                  onPressed: (){
-//                    model?.notifyWidget();
-//                  },
-//                );
-//              }
               if(snapshot.data != 1){
                 return selfBuilder??ViewStateErrorWidget(
                   onPressed: (){
@@ -61,7 +47,7 @@ class MyFutureBuilder<T> extends FutureBuilder<T>{
                   },
                 );
               }
-              model?.isFirst = false;
+              model?.init = false;
               return asyncBuilder(context,snapshot);
             }
           }

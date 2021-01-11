@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:hydhome/base/provider/BaseViewModel.dart';
+import '../provider/BaseViewModel.dart';
 import '../controller/BaseController.dart';
 import '../painting/MyDecoration.dart';
 import '../utils/BaseUtils.dart';

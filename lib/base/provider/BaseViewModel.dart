@@ -18,7 +18,7 @@ class BaseViewModel with ChangeNotifier{
   }
 
 
-  bool isFirst = false;
+  bool init = false;
 
 
   bool _disposed = false;

@@ -5,7 +5,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:hydhome/base/provider/BaseViewModel.dart';
+import '../provider/BaseViewModel.dart';
 import 'package:web_browser/web_browser.dart';
 
 import '../router/RouterHepler.dart';
