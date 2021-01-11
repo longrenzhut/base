@@ -2,13 +2,18 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'base/BaseApp.dart';
 import 'base/router/routes.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   BaseApp.init();
-  runApp(MyApp());
+  runApp(ScreenUtilInit(
+    designSize: Size(360, 690),
+    allowFontScaling: false,
+    child: MyApp(),
+  ));
 
   // Android状态栏透明 splash为白色,所以调整状态栏文字为黑色
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
