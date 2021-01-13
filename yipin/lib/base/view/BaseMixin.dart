@@ -1,10 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../utils/ImageHelper.dart';
-import '../utils/MyColors.dart';
-import '../widget/LinearWidget.dart';
-import '../widget/TextView.dart';
 
 mixin BaseMixin {
 
@@ -21,20 +17,6 @@ mixin BaseMixin {
     return map;
   }
 
-
-
-  //  show({Future<dynamic> reqCallback}){
-//    BotToast.showCustomNotification(
-//      toastBuilder: (value){
-//        reqCallback.then((t) => value);
-//
-//      return NetLoadingDialog(
-//        outsideDismiss: false,
-//      );
-//    },
-//    );
-//  }
-//
     T providerOf<T>(BuildContext context){
     return Provider.of<T>(context,listen: false);
   }
@@ -42,45 +24,4 @@ mixin BaseMixin {
 
 
 
-
-
-
-  Widget  setItemTitleWidget(String title, {  EdgeInsetsGeometry margin}){
-    return LinearWidget(
-      margin: margin,
-      direction: Axis.horizontal,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SizedBox(width: 6,),
-        TextView(title,size: 16,color: MyColors.cl_00020D,weight: FontWeight.bold),
-      ],
-    );
-  }
-
-  Widget topWidget(BuildContext context,String title,{bool offstage:false, Function() onTop}){
-    return LinearWidget(
-      direction: Axis.horizontal,
-
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SizedBox(width: 6,),
-        TextView(title,size: 16,color: MyColors.cl_00020D,weight: FontWeight.bold),
-        Spacer(),
-        Offstage(
-          offstage: offstage,
-          child:   InkWell(
-            child: ImageHelper.loadAssert("ic_close.png",width: 16,height: 16),
-            onTap: (){
-              if(onTop != null)
-                onTop();
-              else
-                Navigator.of(context).pop();
-
-            },
-          ),
-        )
-
-      ],
-    );
-  }
 }

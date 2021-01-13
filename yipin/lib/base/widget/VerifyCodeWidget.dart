@@ -29,8 +29,8 @@ class VerifyCodeWidget extends StatefulWidget {
     this.size: const Size(110,50),
     this.radius: 0,
     this.fontSize:14,
-    this.color : MyColors.cl_0FB36E,
-    this.disabledColor : MyColors.cl_A0A4AB
+    this.color : MyColors.bgColor,
+    this.disabledColor : Colors.grey
   }) : super(key: key);
 
 

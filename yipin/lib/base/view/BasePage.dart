@@ -14,7 +14,6 @@ abstract class BasePageState<T extends StatefulWidget,K extends BaseViewModel> e
 
   K viewModel;
 
-//  @override
   Color get bgColor => null;
 
   bool autoDispose(){
@@ -25,7 +24,6 @@ abstract class BasePageState<T extends StatefulWidget,K extends BaseViewModel> e
   @override
   void initState() {
     viewModel = getViewModel();
-//    print(viewModel.toString());
     super.initState();
   }
 

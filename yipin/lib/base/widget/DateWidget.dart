@@ -47,7 +47,7 @@ class _DateWidgetState extends BasePageState<DateWidget,DateController> {
   Widget getView(BuildContext context) {
 
 
-    var color = viewModel.isSelected? MyColors.cl_00020D : MyColors.cl_9BA0AA;
+    var color = viewModel.isSelected? MyColors.black : MyColors.black;
     var text =  viewModel.value ??widget.hint;
 
     var myWidget = widget.isMin ? SizedBox.shrink() : Spacer();
@@ -104,7 +104,7 @@ class _DateWidgetState extends BasePageState<DateWidget,DateController> {
     return Ink(
       child: inkWell,
       decoration: MyDecoration.boxDecorationAllRadius(
-        stroke: MyColors.cl_E6EAEE,
+        stroke: MyColors.bgColor,
       ),
     );
   }

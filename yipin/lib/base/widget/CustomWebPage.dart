@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../provider/BaseViewModel.dart';
-import '../router/RouterHepler.dart';
 import '../utils/MyColors.dart';
 import '../view/BasePage.dart';
-import '../widget/LinearWidget.dart';
-import '../widget/MyButton.dart';
 
 class CustomWebPage extends StatefulWidget {
 
@@ -40,19 +37,7 @@ class _CustomWebPageState extends BasePageState<CustomWebPage,BaseViewModel> {
   @override
   Widget getView(BuildContext context) {
     var titleList = titles.split(",");
-    return LinearWidget(
-      margin: EdgeInsets.all(10.0),
-      width: double.maxFinite,
-      padding: EdgeInsets.symmetric(horizontal: 20.0),
-      bgColor: Colors.white,
-      children: [
-        SizedBox(height: 10,),
-        MyButton(text: "返回",onPressed: (){
-          RouterHepler.pop(context);
-        },),
-        SizedBox(height: 10,),
-        Expanded(child: SafeArea(
-          child:  WebView(
+    return  WebView(
             initialUrl: url,  //需要打开的url
             //是否支持js 默认是不支持的，
             javascriptMode: JavascriptMode.unrestricted,
@@ -74,9 +59,8 @@ class _CustomWebPageState extends BasePageState<CustomWebPage,BaseViewModel> {
             //   }
             //   return NavigationDecision.navigate;
             // },
-          ),
-        ))
-      ],
+
+
     );
   }
 }
