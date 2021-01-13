@@ -54,15 +54,15 @@ class Cache{
     String newValue = cacheMap[key];
     if(null != newValue)
       return  newValue;
-//    if(cache.containsKey(key)) {
+   if(cache.containsKey(key)) {
       String value = Cache.cache.getString(key);
       if (null != value) {
         cacheMap[key] = value;
         return value;
       }
-//      else
-//        return defalut;
-//    }
+     else
+       return defalut;
+   }
     else{
       return defalut;
     }

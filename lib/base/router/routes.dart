@@ -20,27 +20,16 @@ class Routes {
 
 
 
-  
+
 
   static onGenerateRoute(BuildContext context, RouteSettings settings) {
 
-    // String name = settings.name;
-    //
-    // if(name == "/"){
-    //   return MaterialPageRoute(builder: routes["/generalize"],settings:  settings);
-    // }
-    // // if (!routes.containsKey(name)) {
-    // //   name = '/404';
-    // // } else if (!Utils.isLogin() && !whiteRouters.contains(name)) {
-    // //   name = '/login';
-    // // }
-//    if(settings.name == "/"){
-//      RouteSettings mySetting = RouteSettings(name: home,arguments: settings.arguments);
-//      return BaseApp.router.generator(mySetting);
-//    }
     String name = settings.name;
     if(name == "/"){
-
+      if(Config.isLogin){
+        return BaseApp.router.generator(RouteSettings(name: home));
+      }
+      return BaseApp.router.generator(RouteSettings(name: login));
     }
     return BaseApp.router.generator(settings);
   }
@@ -58,14 +47,14 @@ class Routes {
 
 
 
-    // tabList.forEach((element) {
-    //   router.define(element.path, handler: MyHandler(
-    //       func: (context,map){
-    //        // final args = context.settings.arguments;
-    //         return HomePage(path: element.path,bundle: map,); //LoginPage();
-    //       }
-    //   ));
-    // });
+    tabList.forEach((element) {
+      router.define(element.path, handler: MyHandler(
+          func: (context,map){
+           // final args = context.settings.arguments;
+            return element.child; //LoginPage();
+          }
+      ));
+    });
 
     router.define(login, handler: MyHandler(
         func: (context,map){
@@ -89,14 +78,7 @@ class MyHandler extends Handler{
 
   MyHandler({this.type = HandlerType.route, this.func}):
         super(type: type,handlerFunc:(_,map){
-        Map<String, dynamic> param = {};
-        if(map.length > 0) {
-          map?.forEach((key, value) {
-            param[key] = JsonUtils.fluroCnParamsDecode(value.first);
-          });
-
-        }
-        return func(_,param);
+        return func(_,map);
 
       });
 }
