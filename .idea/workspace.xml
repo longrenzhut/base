@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0d4f863c-a6d2-40b6-9f5e-ceec7dd66a62" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/values/styles.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1muf8TcfL5ObY3dZbRMvpAoCRIz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.project.structure.last.selected" value="SDK Location" />
+    <property name="android.project.structure.proportion" value="0.15" />
+    <property name="android.sdk.path" value="D:/sdk" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/android/app/src/main/res/values" />
+    <property name="settings.editor.selected.configurable" value="flutter.settings" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\flutterBase\lib\ui\login\page" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\flutterBase\android\app\src\main\res\values" />
+      <recent name="E:\flutterBase\android\gradle" />
+      <recent name="E:\flutterBase\lib" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0d4f863c-a6d2-40b6-9f5e-ceec7dd66a62" name="Default Changelist" comment="" />
+      <created>1610348236354</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1610348236354</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="327" y="77" key="SettingsEditor" timestamp="1610350925686">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="327" y="77" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1610350925686" />
+    <state x="424" y="248" width="744" height="740" key="find.popup" timestamp="1610355850694">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="424" y="248" width="744" height="740" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610355850694" />
+    <state x="530" y="239" key="run.anything.popup" timestamp="1610350276843">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="530" y="239" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610350276843" />
+    <state x="537" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1610503887157">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="537" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610503887157" />
+  </component>
+</project>
