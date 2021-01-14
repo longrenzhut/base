@@ -20,6 +20,31 @@ class Bus<T>{
 
 }
 
+class RxBusUtils{
+
+  List<int> tagList;
+
+  void register<T>(int tag,Function(T data) dataCallback){
+    if(null == tagList)
+      tagList = [];
+    if(!tagList.contains(tag))
+      tagList.add(tag);
+    RxBus.singleton.register<T>(tag).listen((value) {
+      dataCallback?.call(value.data);
+    });
+  }
+
+  void post<T>(int tag,T data){
+    RxBus.singleton.post<T>(tag, data);
+  }
+
+  void dispose() {
+    RxBus.singleton.dispose(tagList);
+    tagList?.clear();
+    tagList = null;
+  }
+}
+
 class RxBus {
 
   static const int Code_1 = 1;

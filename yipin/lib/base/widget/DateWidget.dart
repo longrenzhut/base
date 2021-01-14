@@ -1,14 +1,17 @@
 
 
 import 'package:flutter/material.dart';
-import '../provider/BaseViewModel.dart';
 import '../controller/BaseController.dart';
 import '../painting/MyDecoration.dart';
 import '../utils/BaseUtils.dart';
 import '../utils/ImageHelper.dart';
 import '../utils/MyColors.dart';
 import '../widget/TextView.dart';
-import '../view/BasePage.dart';
+
+
+
+
+
 
 class DateWidget extends StatefulWidget {
 
@@ -24,28 +27,25 @@ class DateWidget extends StatefulWidget {
   _DateWidgetState createState() => _DateWidgetState();
 }
 
-class _DateWidgetState extends BasePageState<DateWidget,DateController> {
+class _DateWidgetState extends State<DateWidget> {
 
-  @override
-  DateController getViewModel() =>  widget.controller??DateController();
 
-  @override
-  bool get isWidget => true;
-
-  @override
-  Color get bgColor => MyColors.transparent;
-
+  DateController viewModel;
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
+    viewModel = widget.controller??DateController();
+    viewModel?.setNotifyWidget(() {
+      setState(() {
+
+      });
+    });
     viewModel?.setValue(widget.text);
+    super.initState();
   }
 
   @override
-  Widget getView(BuildContext context) {
-
+  Widget build(BuildContext context) {
 
     var color = viewModel.isSelected? MyColors.cl_00020D : MyColors.cl_9BA0AA;
     var text =  viewModel.value ??widget.hint;
@@ -109,9 +109,14 @@ class _DateWidgetState extends BasePageState<DateWidget,DateController> {
     );
   }
 
+  @override
+  void dispose() {
+    viewModel?.dispose();
+    super.dispose();
+  }
 }
 
-class DateController extends BaseViewModel with BaseController{
+class DateController  with BaseController{
 
 
   String _date;
@@ -138,7 +143,7 @@ class DateController extends BaseViewModel with BaseController{
     this._date = value;
     super.setValue(value);
     isSelected = !BaseUtils.isEmpty(value);
-    notifyListeners();
+    notifyWidget();
   }
 
 

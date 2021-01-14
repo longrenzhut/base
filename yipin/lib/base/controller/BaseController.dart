@@ -1,7 +1,22 @@
 
 import '../utils/BaseUtils.dart';
 
-mixin BaseController {
+mixin BaseController{
+
+
+  int index = 0;
+
+  void setIndex(int index){
+    this.index = index;
+    notifyWidget();
+  }
+
+  Function() notifyWidget;
+
+  void setNotifyWidget(Function() notifyWidget){
+    this.notifyWidget = notifyWidget;
+  }
+
 
 
   String _value;
@@ -18,6 +33,10 @@ mixin BaseController {
 
   bool isEmpty(){
     return BaseUtils.isEmpty(_value);
+  }
+
+  void dispose(){
+    notifyWidget = null;
   }
 
 }

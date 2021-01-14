@@ -72,8 +72,6 @@ class IndexStackController with ChangeNotifier{
     return indexList.contains(index);
   }
 
-
-
   void setIndex(int index){
     this.index = index;
     save(index);

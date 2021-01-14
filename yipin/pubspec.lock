@@ -280,6 +280,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.16.1"
+  lazy_load_refresh_indicator:
+    dependency: "direct main"
+    description:
+      name: lazy_load_refresh_indicator
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.0+1"
   matcher:
     dependency: transitive
     description:

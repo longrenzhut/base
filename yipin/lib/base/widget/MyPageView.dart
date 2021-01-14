@@ -1,9 +1,9 @@
 
 
 import 'package:flutter/material.dart';
-import '../provider/BaseViewModel.dart';
-
-import '../provider/provider_widget.dart';
+import '../controller/BaseController.dart';
+import '../controller/BaseController.dart';
+import '../provider/ProviderWidget.dart';
 
 class MyPageView extends StatelessWidget {
 
@@ -19,7 +19,7 @@ class MyPageView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     var _controller = controller??MyPageViewController();
-    return ProviderWidget(
+    return ProviderWidget<MyPageViewController>(
         builder: (context,model,child){
           return children[model.index];
         },
@@ -27,14 +27,8 @@ class MyPageView extends StatelessWidget {
   }
 }
 
-class MyPageViewController extends BaseViewModel {
+class MyPageViewController  with BaseController,ChangeNotifier{
 
 
-  int index = 0;
-
-  void setIndex(int index) {
-    this.index = index;
-    notifyWidget();
-  }
 }
 

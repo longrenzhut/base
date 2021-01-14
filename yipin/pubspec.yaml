@@ -39,6 +39,7 @@ dependencies:
   fluro:
   #UI
   pull_to_refresh:
+  lazy_load_refresh_indicator:
   #轮播
   flutter_swiper:
   #图片缓存

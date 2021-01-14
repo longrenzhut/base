@@ -38,7 +38,7 @@ class MyFutureBuilder<T> extends FutureBuilder<T>{
             if(snapshot.hasError){
               return errorBuilder??ViewStateErrorWidget(
                 onPressed: (){
-                  model?.notifyWidget();
+                  model?.notifyUI();
                 },
               );
             }
@@ -46,7 +46,7 @@ class MyFutureBuilder<T> extends FutureBuilder<T>{
               if(snapshot.data != 1){
                 return selfBuilder??ViewStateErrorWidget(
                   onPressed: (){
-                    model?.notifyWidget();
+                    model?.notifyUI();
                   },
                 );
               }

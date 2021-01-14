@@ -14,12 +14,6 @@ class BaseViewModel with ChangeNotifier{
   //当前表的总条数
   int total = 0;
 
-  int index = 0;
-
-  void setIndex(int index){
-    this.index = index;
-    notifyListeners();
-  }
 
   bool init = false;
 
@@ -51,26 +45,24 @@ class BaseViewModel with ChangeNotifier{
 
 
 
-  void notifyWidget(){
+  void notifyUI(){
     notifyListeners();
   }
 
 
   //通信
-  List<int> tagList;
+  RxBusUtils rxBusUtils;
 
   void register<T>(int tag,Function(T data) dataCallback){
-    if(null == tagList)
-      tagList = [];
-    if(!tagList.contains(tag))
-      tagList.add(tag);
-    RxBus.singleton.register<T>(tag).listen((value) {
-      dataCallback?.call(value.data);
-    });
+    if(null == rxBusUtils)
+      rxBusUtils = RxBusUtils();
+    rxBusUtils.register<T>(tag,dataCallback);
   }
 
   void post<T>(int tag,T data){
-    RxBus.singleton.post<T>(tag, data);
+    if(null == rxBusUtils)
+      rxBusUtils = RxBusUtils();
+    rxBusUtils.post<T>(tag, data);
   }
 
 
@@ -83,8 +75,7 @@ class BaseViewModel with ChangeNotifier{
 
   @override
   void dispose() {
-    RxBus.singleton.dispose(tagList);
-    tagList?.clear();
+    rxBusUtils?.dispose();
 
     list?.forEach((element) {
       element?.cancel();
