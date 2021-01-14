@@ -17,19 +17,6 @@ class RouterHepler{
         RouteTransitionsBuilder transitionBuilder}) {
 
 
-
-    // bundle?.forEach((key,value){
-    //   if(len == 0) {
-    //     String v = "?${key}=${JsonUtils.fluroCnParamsEncode(value)}";
-    //     param.write(v);
-    //   }
-    //   else {
-    //     param.write("&${key}=${JsonUtils.fluroCnParamsEncode(value)}");
-    //   }
-    //   len ++;
-    // });
-
-
     return BaseApp.router.navigateTo(context, path,
         replace: replace,
         clearStack: clearStack,

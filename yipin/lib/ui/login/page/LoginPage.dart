@@ -18,7 +18,7 @@ class _LoginPageState extends BasePageState<LoginPage,LoginVM> {
   LoginVM getViewModel() =>  LoginVM();
 
 
-  List<String> items = ["1", "2", "3", "4"];
+  List<String> items = List.generate(4, (index) => index.toString()).toList();
   RefreshController _refreshController =
   RefreshController(initialRefresh: false);
 
@@ -31,7 +31,7 @@ class _LoginPageState extends BasePageState<LoginPage,LoginVM> {
 
   void _onLoading() async{
     // monitor network fetch
-    if(items.length == 20){
+    if(items.length == 30){
       _refreshController.loadComplete();
       return;
     }
@@ -51,31 +51,6 @@ class _LoginPageState extends BasePageState<LoginPage,LoginVM> {
     return SmartRefresher(
         enablePullDown: true,
         enablePullUp: true,
-        header: WaterDropHeader(),
-        footer: CustomFooter(
-          builder: (BuildContext context,LoadStatus mode){
-            Widget body ;
-            if(mode==LoadStatus.idle){
-              body =  Text("pull up load");
-            }
-            else if(mode==LoadStatus.loading){
-              body =  CupertinoActivityIndicator();
-            }
-            else if(mode == LoadStatus.failed){
-              body = Text("Load Failed!Click retry!");
-            }
-            else if(mode == LoadStatus.canLoading){
-              body = Text("release to load more");
-            }
-            else{
-              body = Text("No more Data");
-            }
-            return Container(
-              height: 55.0,
-              child: Center(child:body),
-            );
-          },
-        ),
         controller: _refreshController,
         onRefresh: _onRefresh,
         onLoading: _onLoading,
