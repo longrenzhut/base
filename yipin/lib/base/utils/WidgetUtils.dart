@@ -166,7 +166,7 @@ class WidgetUtils {
           return builder(context,model);
         },
       ),
-    );
+    );;
   }
 
 }

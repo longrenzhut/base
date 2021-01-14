@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../Config.dart';
 import '../cache/Cahes.dart';
 import '../utils/MyColors.dart';
+import '../widget/MyButton.dart';
 import '../widget/TextView.dart';
 
 class ChangeUtils{
@@ -18,7 +18,7 @@ class ChangeUtils{
      datas?.forEach((element) {
        var entry = PopupMenuItem<String>(
          value: '$element',
-         child: TextView('$element',color: MyColors.black,size: 16,),
+         child: TextView('$element',color: MyColors.cl_7B8290,size: 16,),
        );
 
        list.add(entry);
@@ -27,7 +27,7 @@ class ChangeUtils{
 
      return PopupMenuButton<String>(
        tooltip: "切换环境",
-       child: Text("切换环境",),
+       child:   MyButton(text: "切换环境",),
        offset: Offset(0.5,0.5),
        onSelected: (value){
          switch (value) {

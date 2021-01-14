@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'BaseViewModel.dart';
 import 'package:provider/provider.dart';
 
 
 
-class ProviderWidget<T extends BaseViewModel> extends StatefulWidget {
+class ProviderWidget<T extends ChangeNotifier> extends StatefulWidget {
   final ValueWidgetBuilder<T> builder;
   final T model;
   final Widget child;
@@ -25,7 +24,7 @@ class ProviderWidget<T extends BaseViewModel> extends StatefulWidget {
   _ProviderWidgetState<T> createState() => _ProviderWidgetState<T>();
 }
 
-class _ProviderWidgetState<T extends BaseViewModel>
+class _ProviderWidgetState<T extends ChangeNotifier>
     extends State<ProviderWidget<T>> with AutomaticKeepAliveClientMixin{
   T model;
 
@@ -62,7 +61,7 @@ class _ProviderWidgetState<T extends BaseViewModel>
 
 typedef ValueWidgetBuilder2<A,B> = Widget Function(BuildContext context, A model1, B model2, Widget child);
 
-class ProviderWidget2<A extends BaseViewModel, B extends ChangeNotifier>
+class ProviderWidget2<A extends ChangeNotifier, B extends ChangeNotifier>
     extends StatefulWidget{
 
 
@@ -91,7 +90,7 @@ class ProviderWidget2<A extends BaseViewModel, B extends ChangeNotifier>
   _ProviderWidgetState2<A, B> createState() => _ProviderWidgetState2<A, B>();
 }
 
-class _ProviderWidgetState2<A extends BaseViewModel, B extends ChangeNotifier>
+class _ProviderWidgetState2<A extends ChangeNotifier, B extends ChangeNotifier>
     extends State<ProviderWidget2<A, B>> with AutomaticKeepAliveClientMixin {
   A model1;
   B model2;

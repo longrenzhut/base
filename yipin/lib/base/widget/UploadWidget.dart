@@ -91,7 +91,7 @@ class _UploadWidgetState extends State<UploadWidget> {
           ],
         ),
         SizedBox(height: 10,),
-        TextView(title,size: 14,color: MyColors.bgColor,),
+        TextView(title,size: 14,color: MyColors.cl_7B8290,),
       ],
     );
   }
