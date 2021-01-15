@@ -1,5 +1,4 @@
 
-
 import 'package:flutter/material.dart';
 import '../../provider/StateWidget.dart';
 import '../../provider/ListViewModel.dart';
@@ -8,8 +7,8 @@ import 'PtrWidget.dart';
 import '../../adapter/BaseAdapter.dart';
 import '../../utils/WidgetUtils.dart';
 
-class PtrListWidget extends StatelessWidget {
 
+class PtrSliverListWidget extends StatelessWidget {
 
   final EdgeInsetsGeometry padding;
   final bool shrinkWrap = false;
@@ -17,13 +16,15 @@ class PtrListWidget extends StatelessWidget {
   final double itemExtent;
   final ListViewModel viewModel;
   final bool enablePullUp;
+  final List<Widget> slivers;
 
 
-  const PtrListWidget({Key key,
+  const PtrSliverListWidget({Key key,
     this.padding,
     this.itemExtent,
     this.viewModel,
     this.adapter,
+    this.slivers,
     this.enablePullUp:true
   }
       ) : super(key: key);
@@ -40,16 +41,27 @@ class PtrListWidget extends StatelessWidget {
         if(viewModel.list.isEmpty){
           return ViewStateEmptyWidget();
         }
-        return  WidgetUtils.buildList(
-            adapter: adapter,
-            padding:padding,
-            itemExtent: itemExtent,
-            shrinkWrap: shrinkWrap
+        return CustomScrollView(
+          slivers: List.generate((slivers?.length??0) + 1, (index){
+            if(index == (slivers?.length??0))
+              return child;
+            return slivers[index];
+          }).toList(),
         );
       },
 
     );
   }
+
+  Widget get child{
+    if(null == itemExtent){
+      return WidgetUtils.buildSliverList(
+          adapter: adapter
+      );
+    }
+    return WidgetUtils.buildSliverExtentList(
+        itemExtent: itemExtent,
+        adapter: adapter
+    );
+  }
 }
-
-

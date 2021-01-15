@@ -24,11 +24,10 @@ abstract class ListViewModel<T> extends BaseViewModel{
   List<T> data;
 
   Future refresh() async {
-    try {
-      _currentPageNum = pageNumFirst;
-      data = null;
-      var code = await loadData(pageNum: pageNumFirst);
-
+    _currentPageNum = pageNumFirst;
+    data = null;
+    var code = await loadData(pageNum: pageNumFirst);
+    if(code == 1) {
       list.clear();
       if (data.isEmpty) {
         refreshController.refreshCompleted(resetFooterState: true);
@@ -43,22 +42,22 @@ abstract class ListViewModel<T> extends BaseViewModel{
           refreshController.loadComplete();
         }
       }
-      return code;
-    } catch (e, s) {
-      /// 页面已经加载了数据,如果刷新报错,不应该直接跳转错误页面
-      /// 而是显示之前的页面数据.给出错误提示
+    }
+    else if(code == -1){
       if (_refreshController.init) list.clear();
       refreshController.refreshFailed();
-
-      return -1;
     }
+    else{
+      refreshController.refreshCompleted(resetFooterState: true);
+    }
+    return code;
   }
 
   /// 上拉加载更多
   Future loadMore() async {
-    try {
-      data = null;
-      await loadData(pageNum: ++_currentPageNum);
+    data = null;
+    var code = await loadData(pageNum: ++_currentPageNum);
+    if(code == 1) {
       if (data.isEmpty) {
         _currentPageNum--;
         refreshController.loadNoData();
@@ -69,22 +68,25 @@ abstract class ListViewModel<T> extends BaseViewModel{
         } else {
           refreshController.loadComplete();
         }
-        notifyListeners();
       }
-    } catch (e, s) {
+    else if(code == -1){
       _currentPageNum--;
       refreshController.loadFailed();
-      notifyListeners();
     }
+    else{
+      _currentPageNum--;
+      refreshController.loadFailed();
+    }
+    return code;
   }
 
   // 加载数据
   Future loadData({int pageNum});
 
-  @override
-  void dispose() {
-    _refreshController?.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _refreshController?.dispose();
+  //   super.dispose();
+  // }
 
 }

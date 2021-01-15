@@ -1,13 +1,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:yipin/base/adapter/BaseAdapter.dart';
-import 'package:yipin/base/utils/WidgetUtils.dart';
-import 'package:yipin/base/widget/ptr/PtrListWidget.dart';
-import 'package:yipin/base/widget/ptr/PtrWidget.dart';
-import 'package:yipin/ui/login/viewmodel/LoginVM.dart';
 
+import '../../../base/adapter/BaseAdapter.dart';
+import '../../../base/utils/WidgetUtils.dart';
 import '../../../base/view/BasePage.dart';
+import '../../../base/widget/ptr/PtrSliverListWidget.dart';
+import '../../../ui/login/viewmodel/LoginVM.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -22,7 +21,12 @@ class _LoginPageState extends BasePageState<LoginPage,LoginVM> {
 
   @override
   Widget getView(BuildContext context) {
-    return PtrListWidget(
+    return PtrSliverListWidget(
+      slivers: [
+        WidgetUtils.buildSliverPadding(
+          child: Text("头部")
+        )
+      ],
       viewModel: viewModel,
       itemExtent: 100,
       adapter: BaseAdapter<String>(

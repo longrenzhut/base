@@ -70,7 +70,8 @@ class _PtrWidgetState extends State<PtrWidget> {
         controller.state = code;
       },
       onLoading: () async{
-        widget.onLoading?.call();
+        var code = await widget.onLoading?.call();
+        controller.state = code;
       },
       child:child,
 
@@ -78,16 +79,18 @@ class _PtrWidgetState extends State<PtrWidget> {
   }
 
   Widget get child {
+    if(!controller.init){
+      return widget.builder(context);
+    }
     switch(controller.state){
       case 0:
         return ViewStateBusyWidget();
       case 1:
         return widget.builder(context);
       case -1:
-        return ViewStateErrorWidget(onPressed:(){
-          initData();
-        });
+        return ViewStateErrorWidget(onPressed:initData);
     }
+    return ViewStateFailedWidget(onPressed: initData);
 
   }
 
