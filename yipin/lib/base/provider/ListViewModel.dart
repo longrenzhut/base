@@ -1,5 +1,5 @@
 
-import 'package:yipin/base/widget/ptr/PtrWidget.dart';
+import '../widget/ptr/PtrWidget.dart';
 
 import 'BaseViewModel.dart';
 
