@@ -32,13 +32,13 @@ class BaseAdapter<T>{
   }
 
 
-  BaseAdapter<T> setDatas(List<T> datas){
-    this.data = datas;
+  BaseAdapter<T> setData(List<T> dat){
+    this.data = data;
 
     return this;
   }
 
-  List<T> getDatas()=> data;
+  List<T> getData()=> data;
 
   int getHeaderCount(){
 

@@ -8,7 +8,7 @@ import '../utils/BaseUtils.dart';
 class ImageHelper {
 
   static String png(String name){
-    return "images/image_zt/$name";
+    return "assets/images/$name";
   }
 
   static Image loadAssert(String name,{double height,double width}){

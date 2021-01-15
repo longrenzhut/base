@@ -9,7 +9,7 @@ import '../http/ReqCallBack.dart';
 class BaseViewModel with ChangeNotifier{
 
 
-  List<CancelToken> list = [];
+  List<CancelToken> cancelTokenList = [];
 
   //当前表的总条数
   int total = 0;
@@ -21,25 +21,25 @@ class BaseViewModel with ChangeNotifier{
 
   Future<dynamic> postP(String url,Params params,ReqCallBack reqCallBack) {
     var cancelToken = CancelToken();
-    list.add(cancelToken);
+    cancelTokenList.add(cancelToken);
     return  HttpUtils.instance().postP(url, params,cancelToken: cancelToken,callBack: reqCallBack);
   }
 
   Future<dynamic> postJ(String url,Params params,ReqCallBack reqCallBack) {
     var cancelToken = CancelToken();
-    list.add(cancelToken);
+    cancelTokenList.add(cancelToken);
     return  HttpUtils.instance().postJ(url, params,cancelToken: cancelToken,callBack: reqCallBack);
   }
 
   Future<dynamic> getP(String url,Params params,ReqCallBack reqCallBack) {
     var cancelToken = CancelToken();
-    list.add(cancelToken);
+    cancelTokenList.add(cancelToken);
     return   HttpUtils.instance().getP(url, params,cancelToken: cancelToken,callBack: reqCallBack);
   }
 
   Future<dynamic> getJ(String url,Params params,ReqCallBack reqCallBack) {
     var cancelToken = CancelToken();
-    list.add(cancelToken);
+    cancelTokenList.add(cancelToken);
     return  HttpUtils.instance().getJ(url, params,cancelToken: cancelToken,callBack: reqCallBack);
   }
 
@@ -77,11 +77,11 @@ class BaseViewModel with ChangeNotifier{
   void dispose() {
     rxBusUtils?.dispose();
 
-    list?.forEach((element) {
+    cancelTokenList?.forEach((element) {
       element?.cancel();
     });
-    list.clear();
-    list = null;
+    cancelTokenList.clear();
+    cancelTokenList = null;
     _disposed = true;
 //    debugPrint('view_state_model dispose -->$runtimeType');
     super.dispose();

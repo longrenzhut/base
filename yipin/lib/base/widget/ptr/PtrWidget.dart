@@ -1,58 +1,120 @@
 
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:yipin/base/adapter/BaseAdapter.dart';
-import 'package:yipin/base/utils/WidgetUtils.dart';
+import '../../controller/BaseController.dart';
+import '../../provider/StateWidget.dart';
 
-class PtrWidget extends StatelessWidget {
 
+
+class PtrWidget extends StatefulWidget {
+
+  final bool enablePullUp;
+  final bool enableTwoLevel;
+  final Future Function() onRefresh;
+  final Future Function() onLoading;
+  final Widget Function(BuildContext context) builder;
   final PtrController controller;
 
-  final Function() onRefresh;
 
-  final VoidCallback onLoading;
-  final EdgeInsetsGeometry padding;
-  final bool shrinkWrap = false;
-  final BaseAdapter adapter;
-
-
-  const PtrWidget({Key key, this.controller, this.onRefresh, this.onLoading,
-    this.padding,
-    this.adapter}
+  const PtrWidget({Key key,
+    this.controller,
+    this.onRefresh,
+    this.onLoading,
+    this.enablePullUp:false,
+    this.enableTwoLevel:false,
+    this.builder
+  }
       ) : super(key: key);
+
+
+  @override
+  _PtrWidgetState createState() => _PtrWidgetState();
+}
+
+class _PtrWidgetState extends State<PtrWidget> {
+
+   PtrController controller;
+
+  @override
+  void initState() {
+    controller = widget.controller;
+    controller?.setNotifyWidget((){
+      if(mounted){
+        setState(() {
+
+        });
+      }
+    });
+    initData();
+    super.initState();
+  }
+
+  void initData() async{
+    controller.init = true;
+    var code = await widget.onRefresh?.call();
+    controller.state = code;
+  }
 
   @override
   Widget build(BuildContext context) {
 
     return SmartRefresher(
+      // physics: AlwaysScrollableScrollPhysics(),
       enablePullDown: true,
-      enablePullUp: true,
+      enableTwoLevel:widget.enableTwoLevel,
+      enablePullUp: widget.enablePullUp,
       controller: controller,
-      onRefresh: (){
-        controller.page = 0;
-        onRefresh();
+      onRefresh: () async{
+        controller.init = false;
+        var code = await widget.onRefresh?.call();
+        controller.state = code;
       },
-      onLoading: (){
-        if(controller.footerStatus != LoadStatus.failed){
-          controller.page++;
-        }
-        onLoading();
+      onLoading: () async{
+        widget.onLoading?.call();
       },
-      child: WidgetUtils.buildList(
-          adapter: adapter,
-          padding:padding,
-          shrinkWrap: shrinkWrap
-      ),
+      child:child,
 
     );
   }
+
+  Widget get child {
+    switch(controller.state){
+      case 0:
+        return ViewStateBusyWidget();
+      case 1:
+        return widget.builder(context);
+      case -1:
+        return ViewStateErrorWidget(onPressed:(){
+          initData();
+        });
+    }
+
+  }
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
+  }
 }
 
-class PtrController extends RefreshController{
+class PtrController extends RefreshController with BaseController{
+
+  bool init = true;
 
   PtrController({bool initialRefresh: false}):super(initialRefresh: initialRefresh);
 
-  int page = 0;
+  static final int waiting = 0;
+  static final int done = 1;
+  static final int hasError = -1;
 
+  int _state = waiting;
 
+  int get state => _state;
+
+  set state(int value) {
+    _state = value;
+    notifyWidget();
+  }
 }
+

@@ -51,7 +51,6 @@ abstract class BasePageState<T extends StatefulWidget,K extends BaseViewModel> e
 
 
 
-
     return Scaffold(
         appBar: getAppBar(context),
         backgroundColor: bgColor,

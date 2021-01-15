@@ -16,6 +16,7 @@ class WidgetUtils {
     ScrollController controller,
     bool shrinkWrap = false,
     BaseAdapter adapter,
+    double itemExtent,
     Axis scrollDirection = Axis.vertical,
   })
   {
@@ -25,6 +26,7 @@ class WidgetUtils {
         padding: padding,
         controller: controller,
         shrinkWrap: shrinkWrap,
+        itemExtent: itemExtent,
         scrollDirection: scrollDirection,
         itemCount: adapter.getItemCount(),
         itemBuilder: (BuildContext context, int index) {
