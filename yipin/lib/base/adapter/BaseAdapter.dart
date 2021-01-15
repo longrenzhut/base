@@ -2,7 +2,7 @@
 import '../utils/MyColors.dart';
 import 'package:flutter/material.dart';
 
- class BaseAdapter<T>{
+class BaseAdapter<T>{
 
   List<T> data;
 
@@ -61,32 +61,29 @@ import 'package:flutter/material.dart';
     }
 
     T model = data[index - getHeaderCount()];
-    return !isClick?
-    builder(context,index,model):
-//        Ink(
-//          width: double.minPositive,
-//          color: MyColors.white,
-//            child:
-            InkWell(
+    return onBindViewHolder(context,index,model);
 
-//      customBorder:ContinuousRectangleBorder(
+
+  }
+
+  //      customBorder:ContinuousRectangleBorder(
 //        side: BorderSide(
 //          color: Colors.white,
 //          style: BorderStyle.solid,
 //        )
 //      ),
-              onTap: (){
-                if(null != onItemClick)
-                  onItemClick(context,index,model);
-                else
-                  onItemClicked(context,index,model);
-              },
-              child: builder(context,index,model),
-//            ),
-        );
 
+  Widget onBindViewHolder(BuildContext context,int index, T model){
+    return !isClick? builder(context,index,model) :InkWell(
+      child: builder(context,index,model),
+      onTap: (){
+        if(null != onItemClick)
+          onItemClick(context,index,model);
+        else
+          onItemClicked(context,index,model);
+      },
+    );
   }
-
   void onItemClicked(BuildContext context, int index,T model){
 
   }
