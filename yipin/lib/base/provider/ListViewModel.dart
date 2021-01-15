@@ -69,6 +69,7 @@ abstract class ListViewModel<T> extends BaseViewModel{
           refreshController.loadComplete();
         }
       }
+    }
     else if(code == -1){
       _currentPageNum--;
       refreshController.loadFailed();
