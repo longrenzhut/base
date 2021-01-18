@@ -10,7 +10,6 @@ class MyFutureBuilder<T> extends FutureBuilder<T>{
   final Widget Function(BuildContext context) selfBuilder;
   final AsyncWidgetBuilder<T> asyncBuilder;
   final BaseViewModel model;
-  final List data;
 
   MyFutureBuilder({
     Key key,
@@ -19,13 +18,11 @@ class MyFutureBuilder<T> extends FutureBuilder<T>{
     this.selfBuilder,
     this.asyncBuilder,
     this.model,
-    this.data
   }):super(
       key: key,
       future: future,
       builder: (BuildContext context, AsyncSnapshot snapshot){
         if(!(model?.init??true)){
-
           return asyncBuilder(context,snapshot);
         }
 
@@ -43,15 +40,23 @@ class MyFutureBuilder<T> extends FutureBuilder<T>{
               );
             }
             else{
-              if(snapshot.data != 1){
-                return selfBuilder??ViewStateErrorWidget(
+              if(snapshot.data == -1){
+                return errorBuilder??ViewStateErrorWidget(
                   onPressed: (){
                     model?.notifyUI();
                   },
                 );
               }
-              model?.init = false;
-              return asyncBuilder(context,snapshot);
+              else if(snapshot.data == 1) {
+                model?.init = false;
+                return asyncBuilder(context, snapshot);
+              }
+              else
+                return selfBuilder??ViewStateFailedWidget(
+                  onPressed: (){
+                    model?.notifyUI();
+                  },
+                );
             }
           }
         }

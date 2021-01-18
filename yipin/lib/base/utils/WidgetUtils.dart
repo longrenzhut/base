@@ -85,27 +85,21 @@ class WidgetUtils {
 
 
 
-
-  static SliverFixedExtentList buildSliverExtentList({
+  static SliverMultiBoxAdaptorWidget buildSliverList({
     BaseAdapter adapter,
-    double itemExtent:34,
+    double itemExtent
   }){
 
-    return SliverFixedExtentList(
-      itemExtent: itemExtent,
-      delegate: SliverChildBuilderDelegate((context, index) {
-        return adapter.onCreateViewHolder(context, index);
-      },
-        //设置显示个数
-        childCount: adapter.getItemCount(),
-      ),
-    );
-  }
-
-  static SliverList buildSliverList({
-    BaseAdapter adapter,
-  }){
-
+    if(null != itemExtent)
+      return SliverFixedExtentList(
+        itemExtent: itemExtent,
+        delegate: SliverChildBuilderDelegate((context, index) {
+          return adapter.onCreateViewHolder(context, index);
+        },
+          //设置显示个数
+          childCount: adapter.getItemCount(),
+        ),
+      );
     return SliverList(
       delegate: SliverChildBuilderDelegate((context, index) {
         return adapter.onCreateViewHolder(context, index);

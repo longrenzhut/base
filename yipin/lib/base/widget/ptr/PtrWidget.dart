@@ -37,7 +37,7 @@ class _PtrWidgetState extends State<PtrWidget> {
 
   @override
   void initState() {
-    controller = widget.controller;
+    controller = widget.controller??PtrController();
     controller?.setNotifyWidget((){
       if(mounted){
         setState(() {
@@ -85,8 +85,10 @@ class _PtrWidgetState extends State<PtrWidget> {
     switch(controller.state){
       case 0:
         return ViewStateBusyWidget();
-      case 1:
-        return widget.builder(context);
+      case 1:{
+          controller.init = false;
+          return widget.builder(context);
+        }
       case -1:
         return ViewStateErrorWidget(onPressed:initData);
     }

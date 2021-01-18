@@ -54,12 +54,7 @@ class PtrSliverListWidget extends StatelessWidget {
   }
 
   Widget get child{
-    if(null == itemExtent){
-      return WidgetUtils.buildSliverList(
-          adapter: adapter
-      );
-    }
-    return WidgetUtils.buildSliverExtentList(
+    return WidgetUtils.buildSliverList(
         itemExtent: itemExtent,
         adapter: adapter
     );

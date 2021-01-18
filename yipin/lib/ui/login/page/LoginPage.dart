@@ -24,16 +24,26 @@ class _LoginPageState extends BasePageState<LoginPage,LoginVM> {
     return PtrSliverListWidget(
       slivers: [
         WidgetUtils.buildSliverPadding(
-          child: Text("头部")
+            child: Column(
+              children: [
+                SizedBox(height: 30,),
+                InkWell(child: Text("头部"),onTap: (){
+                  viewModel?.notifyUI();
+                }),
+                InkWell(child: Text("头部"),onTap: (){
+                  viewModel?.notifyUI();
+                }),
+              ],
+            )
         )
       ],
       viewModel: viewModel,
       itemExtent: 100,
       adapter: BaseAdapter<String>(
-        data: viewModel.list,
-        builder: (context,index,model){
-          return Card(child: Text(model),);
-        }
+          data: viewModel.list,
+          builder: (context,index,model){
+            return Card(child: Text(model),);
+          }
       ),
 
     );
