@@ -5,7 +5,7 @@ import '../BaseApp.dart';
 import '../utils/JsonUtils.dart';
 import 'routes.dart';
 
-class RouterHepler{
+class RouterHelper{
 
 
   static Future _navigateTo(BuildContext context, String path,
@@ -14,6 +14,7 @@ class RouterHepler{
         bool clearStack = false,
         RouteSettings  routeSettings,
         Duration transitionDuration = const Duration(milliseconds: 250),
+        TransitionType transition:TransitionType.cupertino,
         RouteTransitionsBuilder transitionBuilder}) {
 
 
@@ -23,7 +24,7 @@ class RouterHepler{
         routeSettings: routeSettings,
         transitionDuration: transitionDuration,
         transitionBuilder: transitionBuilder,
-        transition: TransitionType.none);
+        transition: transition);
   }
 
 

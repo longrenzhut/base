@@ -2,6 +2,7 @@
 
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import '../../ui/TestPage.dart';
 import '../../ui/login/page/LoginPage.dart';
 import '../BaseApp.dart';
 import '../Config.dart';
@@ -14,9 +15,7 @@ class Routes {
   static const String initRouter = "/";
   static const String home = "/home";
   static const String login = "/login";
-  static const String taskManage = "/taskManage";
-  static const String abnormalOrder = "/abnormalOrder";
-  static const String order = "/order";
+  static const String test = "/test";
 
 
 
@@ -34,7 +33,11 @@ class Routes {
     return BaseApp.router.generator(settings);
   }
 
-  static List<RouteModel> tabList = [];
+  static List<RouteModel> tabList = [
+    RouteModel(test,"测试",TestPage())
+  ];
+
+
 
   static Future<void> configureRoutes(FluroRouter router) async {
 
@@ -43,7 +46,6 @@ class Routes {
           print("ROUTE WAS NOT FOUND !!!");
           return null;//LoginPage();
         });
-
 
 
 

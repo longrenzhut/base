@@ -7,13 +7,11 @@ class MyIndexStack extends StatelessWidget {
 
   final IndexStackController controller;
   final List<Widget> children;
-  final bool lazyLoad;
 
 
   const MyIndexStack({Key key,
     @required this.controller,
     @required this.children,
-    this.lazyLoad:false
   }) : super(key: key);
 
   @override

@@ -1,6 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:yipin/base/router/RouterHelper.dart';
+import 'package:yipin/base/router/routes.dart';
 
 import '../../../base/adapter/BaseAdapter.dart';
 import '../../../base/utils/WidgetUtils.dart';
@@ -28,7 +30,7 @@ class _LoginPageState extends BasePageState<LoginPage,LoginVM> {
               children: [
                 SizedBox(height: 30,),
                 InkWell(child: Text("头部"),onTap: (){
-                  viewModel?.notifyUI();
+                  RouterHelper.build(context, RouteSettings(name: Routes.test));
                 }),
                 InkWell(child: Text("头部"),onTap: (){
                   viewModel?.notifyUI();
