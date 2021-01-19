@@ -37,6 +37,9 @@ dependencies:
   bot_toast: ^3.0.5
   shared_preferences:
   fluro:
+
+#    微信支付以及登录
+  fluwx:
   #UI
   pull_to_refresh:
   lazy_load_refresh_indicator:
