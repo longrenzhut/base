@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../base/router/RouterHelper.dart';
 import '../../../base/router/routes.dart';
-import '../../../base/widget/WeChatWidget.dart';
+import '../../../base/third/WeChatWidget.dart';
 
 import '../../../base/adapter/BaseAdapter.dart';
 import '../../../base/utils/WidgetUtils.dart';
