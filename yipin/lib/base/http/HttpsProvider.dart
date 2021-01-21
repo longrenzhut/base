@@ -183,13 +183,22 @@ class HttpUtils {
 
 
   get(String url,{Map<String, dynamic> data,options,CancelToken token}) async{
+<<<<<<< HEAD
+    // print('请求参数');
+    // print('${data}');
+    Response response;
+    try{
+      _dio.options.contentType = Headers.jsonContentType;
+=======
     print('get request path ------${url}-------请求参数${data}');
     print('------------');
     Response response;
     try{
+>>>>>>> buildapk
       response = await _dio.get(url,queryParameters: data,options: options,cancelToken: token);
     }on DioError catch (e){
       print('请求失败---错误类型${e.type}--错误信息${e.message}');
+      return null;
     }
 
     return response.data.toString();

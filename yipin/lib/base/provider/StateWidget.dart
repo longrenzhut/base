@@ -87,7 +87,11 @@ class ViewStateEmptyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
+<<<<<<< HEAD
+        child: ImageHelper.buildImage("ic_no_data.png",width: 108,height: 120,type: 1),
+=======
         child: ImageHelper.buildImage("ic_nodata.png",width: 108,height: 120,type: 1),
+>>>>>>> buildapk
       ),
     );
   }
