@@ -182,12 +182,12 @@ class HttpUtils {
 
 
 
-  get(url,{Map<String, dynamic> data,options}) async{
+  get(String url,{Map<String, dynamic> data,options,CancelToken token}) async{
     print('get request path ------${url}-------请求参数${data}');
     print('------------');
     Response response;
     try{
-      response = await _dio.get(url,queryParameters: data,options: options);
+      response = await _dio.get(url,queryParameters: data,options: options,cancelToken: token);
     }on DioError catch (e){
       print('请求失败---错误类型${e.type}--错误信息${e.message}');
     }

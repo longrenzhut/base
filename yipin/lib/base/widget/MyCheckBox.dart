@@ -26,7 +26,7 @@ class MyCheckBox extends StatelessWidget {
     //     height: 12,
     //     width: 12,
     //     child: InkWell(
-    //       child: ImageHelper.loadAssert(name,height: 12,width: 12),
+    //       child: ImageHelper.buildImage(name,height: 12,width: 12),
     //       onTap: (){
     //           onChanged?.call(value);
     //       },

@@ -40,7 +40,7 @@ class ToastUtil{
                   solid: solid
               ),
               children: [
-                ImageHelper.loadAssert(name,width: 16,height: 16),
+                ImageHelper.buildImage(name,width: 16,height: 16),
                 SizedBox(width: 6,),
                 TextView(text,size: 14,color: color,)
               ],

@@ -69,7 +69,7 @@ mixin BaseMixin {
         Offstage(
           offstage: offstage,
           child:   InkWell(
-            child: ImageHelper.loadAssert("ic_close.png",width: 16,height: 16),
+            child: ImageHelper.buildImage("ic_close.png",width: 16,height: 16),
             onTap: (){
               if(onTop != null)
                 onTop();
