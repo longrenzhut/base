@@ -72,9 +72,9 @@ class _DateWidgetState extends State<DateWidget> {
             IndexedStack(
               index: !viewModel.isSelected? 0: 1,
               children: [
-                ImageHelper.loadAssert("ic_date.png",width: 16,height: 16),
+                ImageHelper.buildImage("ic_date.png",width: 16,height: 16),
                 InkWell(
-                  child: ImageHelper.loadAssert("ic_close.png",width: 16,height: 16,),
+                  child: ImageHelper.buildImage("ic_close.png",width: 16,height: 16,),
                   onTap: () async {
                     viewModel?.setDate(null);
                   },

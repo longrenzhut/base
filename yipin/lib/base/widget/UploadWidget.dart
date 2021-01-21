@@ -83,7 +83,7 @@ class _UploadWidgetState extends State<UploadWidget> {
           children: [
             imageWidget,
             InkWell(
-              child: ImageHelper.loadAssert("ic_open_image.png",width: 50,height: 50),
+              child: ImageHelper.buildImage("ic_open_image.png",width: 50,height: 50),
               onTap: () {
                 open();
               },

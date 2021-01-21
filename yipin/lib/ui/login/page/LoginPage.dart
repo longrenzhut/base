@@ -1,8 +1,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:yipin/base/router/RouterHelper.dart';
-import 'package:yipin/base/router/routes.dart';
+import '../../../base/router/RouterHelper.dart';
+import '../../../base/router/routes.dart';
+import '../../../base/widget/WeChatWidget.dart';
 
 import '../../../base/adapter/BaseAdapter.dart';
 import '../../../base/utils/WidgetUtils.dart';
@@ -35,6 +36,7 @@ class _LoginPageState extends BasePageState<LoginPage,LoginVM> {
                 InkWell(child: Text("头部"),onTap: (){
                   viewModel?.notifyUI();
                 }),
+                WeChatWidget()
               ],
             )
         )

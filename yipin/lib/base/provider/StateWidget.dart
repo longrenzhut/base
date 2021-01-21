@@ -40,7 +40,7 @@ class ViewStateErrorWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        ImageHelper.loadAssert("ic_net_error.png",width: 300,height: 224),
+        ImageHelper.buildImage("ic_net_error.png",width: 300,height: 224,type: 1),
         SizedBox(height: 12,),
         TextView("无法连接到网络",color: MyColors.cl_161722,size: 18,),
         SizedBox(height: 10,),
@@ -87,7 +87,7 @@ class ViewStateEmptyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        child: ImageHelper.loadAssert("ic_nodata.png",width: 108,height: 120),
+        child: ImageHelper.buildImage("ic_no_data.png",width: 108,height: 120,type: 1),
       ),
     );
   }

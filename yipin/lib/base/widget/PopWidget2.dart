@@ -82,10 +82,10 @@ class _PopWidget2LayoutState extends State<PopWidget2> {
                   width: 16,
                   height: 16,
                   alignment: Alignment.centerRight,
-                  child: ImageHelper.loadAssert("ic_to_bottom.png",width: 10,height: 6),
+                  child: ImageHelper.buildImage("ic_to_bottom.png",width: 10,height: 6),
                 ),
                 InkWell(
-                  child: ImageHelper.loadAssert("ic_close.png",width: 16,height: 16,),
+                  child: ImageHelper.buildImage("ic_close.png",width: 16,height: 16,),
                   onTap: (){
                     setState(() {
                       widget.controller.index = -1;
