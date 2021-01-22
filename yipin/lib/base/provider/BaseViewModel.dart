@@ -82,7 +82,7 @@ class BaseViewModel with ChangeNotifier{
     cancelTokenList?.forEach((element) {
       element?.cancel();
     });
-    cancelTokenList.clear();
+    cancelTokenList?.clear();
     cancelTokenList = null;
     _disposed = true;
 //    debugPrint('view_state_model dispose -->$runtimeType');

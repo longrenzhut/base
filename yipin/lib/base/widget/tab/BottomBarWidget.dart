@@ -32,17 +32,17 @@ class _BottomBarWidgetState extends BaseWidgetState<BottomBarWidget,BottomBarCon
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          color: Colors.white,
-        boxShadow:[
-          BoxShadow(
-            color: CstColors.cl_7DD1D1D1,
-            offset: Offset(0.0, -3.0), //阴影xy轴偏移量
-            blurRadius: 15.0, //阴影模糊程度
-              spreadRadius: 6.0 //阴影扩散程度
-          )
-        ]
-      ),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow:[
+              BoxShadow(
+                  color: CstColors.cl_7DD1D1D1,
+                  offset: Offset(0.0, -3.0), //阴影xy轴偏移量
+                  blurRadius: 15.0, //阴影模糊程度
+                  spreadRadius: 6.0 //阴影扩散程度
+              )
+            ]
+        ),
         height: 54,
         child: Row(
           children: List.generate(controller.barList.length, (index) {
@@ -53,7 +53,14 @@ class _BottomBarWidgetState extends BaseWidgetState<BottomBarWidget,BottomBarCon
             InkWell(child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ImageHelper.buildImage(imageName,width: 20,height: 20,type: 1,fit: BoxFit.fitHeight),
+                AnimatedCrossFade(
+                  duration: Duration(seconds: 1),
+                  crossFadeState:
+                  controller.index == index ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                  firstChild:  ImageHelper.buildImage(imageName,width: 20,height: 20,type: 1,fit: BoxFit.fitHeight),
+                  secondChild:  ImageHelper.buildImage(imageName,width: 20,height: 20,type: 1,fit: BoxFit.fitHeight),
+                ),
+
                 SizedBox(height: 8,),
                 TextView(model.title,color: color,size: 12,)
               ],
@@ -61,9 +68,7 @@ class _BottomBarWidgetState extends BaseWidgetState<BottomBarWidget,BottomBarCon
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               onTap: () async{
-                await Future.delayed(Duration(milliseconds: 200), () {
-                  controller.setIndex(index);
-                });
+                controller.setIndex(index);
               },
             )
             );
