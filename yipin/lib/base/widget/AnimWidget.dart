@@ -17,7 +17,7 @@ class _AnimatedWidgetState extends State<AnimWidget> with SingleTickerProviderSt
   void initState() {
     _controller = AnimationController(duration: Duration(milliseconds: 1000),vsync: this);
 
-    animation = Tween(begin: 0.0,end: 1.0).animate(_controller);
+    animation = Tween(begin: 0.0,end: 3.0).animate(_controller);
     //开始动画
     super.initState();
   }
@@ -33,8 +33,9 @@ class _AnimatedWidgetState extends State<AnimWidget> with SingleTickerProviderSt
     return AnimatedBuilder(
       animation: animation,
       builder: (BuildContext context, Widget child) {
-        return Transform.rotate(
-          angle: animation.value,
+        return Transform(
+          transform:Matrix4.skew(animation.value,animation.value),
+          // angle: animation.value,
           child: child,
         );
       },
