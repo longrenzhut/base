@@ -5,7 +5,7 @@ import '../utils/CstColors.dart';
 
 class MyDecoration {
 
-  static BoxDecoration boxDecorationRadius({
+  static BoxDecoration buildShapeByRadius({
     Color solid: Colors.transparent,
     Color stroke:Colors.transparent,
     double strokeWidth:0.0,
@@ -30,7 +30,7 @@ class MyDecoration {
   }
 
 
-  static BoxDecoration boxDecorationAllRadius({
+  static BoxDecoration buildShape({
     Color solid: Colors.transparent,
     Color stroke:Colors.transparent,
     double strokeWidth: 1.0,

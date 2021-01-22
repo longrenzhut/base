@@ -19,6 +19,7 @@ class CstColors{
   static const Color cl_0FB36E = Color(0xFF0FB36E);
   //阴影
   static const Color cl_33161722 = Color(0x33161722);
+  static const Color cl_7DD1D1D1 = Color(0x7DD1D1D1);
   //baseadapter
   static const Color cl_A5AAB4 = Color(0xFFA5AAB4);
 

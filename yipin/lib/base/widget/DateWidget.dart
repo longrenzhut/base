@@ -103,7 +103,7 @@ class _DateWidgetState extends State<DateWidget> {
     );
     return Ink(
       child: inkWell,
-      decoration: MyDecoration.boxDecorationAllRadius(
+      decoration: MyDecoration.buildShape(
         stroke: CstColors.cl_E6EAEE,
       ),
     );

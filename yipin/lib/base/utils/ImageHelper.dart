@@ -77,7 +77,7 @@ class ImageHelper {
 //      return  Container(
 //        width: Adapt.setWidth(width),
 //        height: Adapt.setWidth(width),
-//        decoration: UIHelper.boxDecorationAllRadius(
+//        decoration: UIHelper.buildShape(
 //            radius: Adapt.setWidth(width)/2,
 //            solid: Colors.grey[500]
 //        ),

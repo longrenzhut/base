@@ -33,7 +33,7 @@ class ToastUtil{
     //           padding: EdgeInsets.symmetric(horizontal: 20),
     //           crossAxisAlignment: CrossAxisAlignment.center,
     //           mainAxisAlignment: MainAxisAlignment.center,
-    //           decoration: MyDecoration.boxDecorationAllRadius(
+    //           decoration: MyDecoration.buildShape(
     //               stroke: stroke,
     //               solid: solid
     //           ),

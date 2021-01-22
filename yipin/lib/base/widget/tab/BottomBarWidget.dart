@@ -32,6 +32,17 @@ class _BottomBarWidgetState extends BaseWidgetState<BottomBarWidget,BottomBarCon
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+        boxShadow:[
+          BoxShadow(
+            color: CstColors.cl_7DD1D1D1,
+            offset: Offset(0.0, -3.0), //阴影xy轴偏移量
+            blurRadius: 15.0, //阴影模糊程度
+              spreadRadius: 6.0 //阴影扩散程度
+          )
+        ]
+      ),
         height: 54,
         child: Row(
           children: List.generate(controller.barList.length, (index) {
