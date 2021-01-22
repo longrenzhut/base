@@ -125,7 +125,7 @@ class BaseWidgetController with BaseController {
     cancelTokenList?.forEach((element) {
       element?.cancel();
     });
-    cancelTokenList.clear();
+    cancelTokenList?.clear();
     cancelTokenList = null;
     super.dispose();
   }

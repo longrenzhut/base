@@ -188,7 +188,7 @@ class EditLayout extends StatelessWidget {
                 return  Visibility(
                     visible: !(model.offstage) && hideClose,
                     child: InkWell(
-                      child: ImageHelper.loadAssert("ic_close.png",width: 16,height: 16,),
+                      child: ImageHelper.buildImage("ic_close.png",width: 16,height: 16,),
                       onTap: (){
                         _controller.reset();
                       },

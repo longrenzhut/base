@@ -4,7 +4,7 @@ import '../extension/WidgetExt.dart';
 import '../model/FileModel.dart';
 import '../utils/BaseUtils.dart';
 import '../utils/ImageHelper.dart';
-import '../utils/MyColors.dart';
+import '../utils/CstColors.dart';
 import '../widget/LinearWidget.dart';
 import '../widget/TextView.dart';
 
@@ -53,7 +53,7 @@ class _FileWidgetState extends State<FileWidget> {
         ).buildInkWell(() => BaseUtils.launchURL(url)),
 
         SizedBox(height: 10,),
-        TextView(widget.title,size: 12,color: MyColors.cl_161722,),
+        TextView(widget.title,size: 12,color: CstColors.cl_161722,),
       ],
     );
   }

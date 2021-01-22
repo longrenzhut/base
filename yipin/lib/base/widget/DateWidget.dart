@@ -5,7 +5,7 @@ import '../controller/BaseController.dart';
 import '../painting/MyDecoration.dart';
 import '../utils/BaseUtils.dart';
 import '../utils/ImageHelper.dart';
-import '../utils/MyColors.dart';
+import '../utils/CstColors.dart';
 import '../widget/TextView.dart';
 
 
@@ -47,7 +47,7 @@ class _DateWidgetState extends State<DateWidget> {
   @override
   Widget build(BuildContext context) {
 
-    var color = viewModel.isSelected? MyColors.cl_00020D : MyColors.cl_9BA0AA;
+    var color = viewModel.isSelected? CstColors.cl_00020D : CstColors.cl_9BA0AA;
     var text =  viewModel.value ??widget.hint;
 
     var myWidget = widget.isMin ? SizedBox.shrink() : Spacer();
@@ -72,9 +72,9 @@ class _DateWidgetState extends State<DateWidget> {
             IndexedStack(
               index: !viewModel.isSelected? 0: 1,
               children: [
-                ImageHelper.loadAssert("ic_date.png",width: 16,height: 16),
+                ImageHelper.buildImage("ic_date.png",width: 16,height: 16),
                 InkWell(
-                  child: ImageHelper.loadAssert("ic_close.png",width: 16,height: 16,),
+                  child: ImageHelper.buildImage("ic_close.png",width: 16,height: 16,),
                   onTap: () async {
                     viewModel?.setDate(null);
                   },
@@ -104,7 +104,7 @@ class _DateWidgetState extends State<DateWidget> {
     return Ink(
       child: inkWell,
       decoration: MyDecoration.boxDecorationAllRadius(
-        stroke: MyColors.cl_E6EAEE,
+        stroke: CstColors.cl_E6EAEE,
       ),
     );
   }

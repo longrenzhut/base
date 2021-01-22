@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import '../utils/MyColors.dart';
+import '../utils/CstColors.dart';
 
 
 class PopWindow2 extends StatefulWidget {
@@ -143,7 +143,7 @@ class PopRoute extends PopupRoute<String>{
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
-                            color: MyColors.cl_33161722,
+                            color: CstColors.cl_33161722,
                             offset: Offset(0.0, 15.0), //阴影xy轴偏移量
                             blurRadius: 15.0, //阴影模糊程度
                             spreadRadius: 1.0 //阴影扩散程度

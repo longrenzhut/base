@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import '../utils/MyColors.dart';
+import '../utils/CstColors.dart';
 import '../widget/TextView.dart';
 
 class MyButton extends FlatButton{
@@ -34,17 +34,17 @@ class MyButton extends FlatButton{
         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
       ),
     )
-        : (textChild ??TextView(text,size: size,color: type == 0 ? MyColors.cl_0FB36E : MyColors.white,)),
-    color: type != 0 ? MyColors.cl_0FB36E :  Colors.transparent,
+        : (textChild ??TextView(text,size: size,color:  CstColors.white,)),
+    color: Colors.transparent,
     height: height,
     padding:padding,
-    shape: isCircle ?
-    StadiumBorder(
-      side: BorderSide(width: 1, color: type == 0 ? MyColors.cl_0FB36E :  Colors.transparent),
-    ):
-    ContinuousRectangleBorder(
-        side: BorderSide(width: 0.5, color: type == 0 ? MyColors.cl_0FB36E :  Colors.transparent),
-        borderRadius: BorderRadius.circular(radius)),
+    // shape: isCircle ?
+    // StadiumBorder(
+    //   side: BorderSide(width: 1, color: type == 0 ? CstColors.cl_0FB36E :  Colors.transparent),
+    // ):
+    // ContinuousRectangleBorder(
+    //     side: BorderSide(width: 0.5, color: type == 0 ? CstColors.cl_0FB36E :  Colors.transparent),
+    //     borderRadius: BorderRadius.circular(radius)),
     minWidth: minWidth,
     onPressed: onPressed,
   );

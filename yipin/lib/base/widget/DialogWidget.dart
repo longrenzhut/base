@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../utils/MyColors.dart';
+import '../utils/CstColors.dart';
 
 class DialogWidget extends StatelessWidget {
 
@@ -59,7 +59,7 @@ class DialogWidget extends StatelessWidget {
               child: Consumer<DialogController>(
                 builder: (context,model,child){
                   return Material(
-                    color: MyColors.bgColor,
+                    color: CstColors.bgColor,
                     child: Center(
                       child: builder(controller),
                     ),

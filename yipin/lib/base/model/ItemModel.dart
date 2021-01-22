@@ -3,10 +3,39 @@ class ItemModel {
 
   String _title;
   String _content;
-  int _icon;
+  String _icon;
+  String _iconSelected;
   String _url;
   int _isSelected;
   int _type;
+
+
+  ItemModel(
+  {
+    String title,
+    String content,
+    String icon,
+    String iconSelected,
+    String url,
+    int isSelected,
+    int type,
+}
+      ){
+    this._title = title;
+    this._content = content;
+    this._icon = icon;
+    this._url = url;
+    this._isSelected = isSelected;
+    this._type = type;
+    this._iconSelected = iconSelected;
+  }
+
+
+  String get iconSelected => _iconSelected;
+
+  set iconSelected(String value) {
+    _iconSelected = value;
+  }
 
   String get title => _title;
 
@@ -39,9 +68,9 @@ class ItemModel {
     _url = value;
   }
 
-  int get icon => _icon;
+  String get icon => _icon;
 
-  set icon(int value) {
+  set icon(String value) {
     _icon = value;
   }
 

@@ -11,6 +11,7 @@ extension WidgetExt on Widget{
   InkWell buildInkWell(Function() onTap){
 
     return InkWell(
+      highlightColor: Colors.transparent,
       child: this,
       onTap: onTap,
     );

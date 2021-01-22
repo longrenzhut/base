@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'base/utils/MyColors.dart';
+import 'base/utils/CstColors.dart';
 import 'base/BaseApp.dart';
 import 'base/router/routes.dart';
 
@@ -24,6 +24,7 @@ void main() async{
       statusBarIconBrightness: Brightness.dark,
       statusBarBrightness: Brightness.dark));
 }
+
 
 
 class MyApp extends StatelessWidget {
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             // primarySwatch: Colors.green,//主题色
               primaryColor: Colors.white,//导航栏颜色
-              canvasColor: MyColors.bgColor,//画布颜色
+              canvasColor: CstColors.bgColor,//画布颜色
               buttonTheme: ButtonThemeData(minWidth: double.infinity, height: double.infinity,
                   layoutBehavior:ButtonBarLayoutBehavior.constrained)
 

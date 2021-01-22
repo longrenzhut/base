@@ -4,7 +4,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import '../painting/MyDecoration.dart';
 import '../utils/ImageHelper.dart';
-import '../utils/MyColors.dart';
+import '../utils/CstColors.dart';
 import '../widget/LinearWidget.dart';
 import '../widget/TextView.dart';
 
@@ -20,9 +20,9 @@ class ToastUtil{
     // BotToast.showCustomNotification(
     //     enableSlideOff:false,
     //     toastBuilder: (value){
-    //       var stroke = error? MyColors.cl_D48B8B : MyColors.cl_8BD4B5;
-    //       var solid = error? MyColors.cl_FFEEEE : MyColors.cl_EEFFF8;
-    //       var color = error? MyColors.cl_F92E2E : MyColors.cl_019A5A;
+    //       var stroke = error? CstColors.cl_D48B8B : CstColors.cl_8BD4B5;
+    //       var solid = error? CstColors.cl_FFEEEE : CstColors.cl_EEFFF8;
+    //       var color = error? CstColors.cl_F92E2E : CstColors.cl_019A5A;
     //       var name = error? "ic_toast_error.png" : "ic_toast_suc.png";
     //       return Container(
     //         margin: EdgeInsets.only(top: 80),

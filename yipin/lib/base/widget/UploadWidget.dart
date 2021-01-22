@@ -13,7 +13,7 @@ import '../http/ReqCallBack.dart';
 import '../model/FileModel.dart';
 import '../utils/BaseUtils.dart';
 import '../utils/ImageHelper.dart';
-import '../utils/MyColors.dart';
+import '../utils/CstColors.dart';
 import '../widget/TextView.dart';
 
 
@@ -83,7 +83,7 @@ class _UploadWidgetState extends State<UploadWidget> {
           children: [
             imageWidget,
             InkWell(
-              child: ImageHelper.loadAssert("ic_open_image.png",width: 50,height: 50),
+              child: TextView("打开"),//ImageHelper.buildImage("ic_open_image.png",width: 50,height: 50),
               onTap: () {
                 open();
               },
@@ -91,7 +91,7 @@ class _UploadWidgetState extends State<UploadWidget> {
           ],
         ),
         SizedBox(height: 10,),
-        TextView(title,size: 14,color: MyColors.cl_7B8290,),
+        TextView(title,size: 14,color: CstColors.cl_7B8290,),
       ],
     );
   }

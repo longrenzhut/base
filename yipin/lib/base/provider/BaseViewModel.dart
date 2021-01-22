@@ -9,17 +9,15 @@ import '../http/ReqCallBack.dart';
 class BaseViewModel with ChangeNotifier{
 
 
-
   List<CancelToken> cancelTokenList;
 
   CancelToken get cancelToken {
     var cancelToken = CancelToken();
-    if(null == cancelTokenList)
+    if (null == cancelTokenList)
       cancelTokenList = [];
     cancelTokenList.add(cancelToken);
     return cancelToken;
   }
-
 
   //当前表的总条数
   int total = 0;
@@ -42,6 +40,8 @@ class BaseViewModel with ChangeNotifier{
   }
 
   Future<dynamic> getJ(String url,Params params,ReqCallBack reqCallBack) {
+    var cancelToken = CancelToken();
+    cancelTokenList.add(cancelToken);
     return  HttpUtils.instance().getJ(url, params,cancelToken: cancelToken,callBack: reqCallBack);
   }
 

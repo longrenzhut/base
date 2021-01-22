@@ -1,5 +1,5 @@
 import '../utils/ImageHelper.dart';
-import '../utils/MyColors.dart';
+import '../utils/CstColors.dart';
 import '../widget/LinearWidget.dart';
 import '../widget/MyButton.dart';
 
@@ -40,11 +40,11 @@ class ViewStateErrorWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        ImageHelper.loadAssert("ic_net_error.png",width: 300,height: 224),
+        ImageHelper.buildImage("ic_net_error.png",width: 300,height: 224,type: 1),
         SizedBox(height: 12,),
-        TextView("无法连接到网络",color: MyColors.cl_161722,size: 18,),
+        TextView("无法连接到网络",color: CstColors.cl_161722,size: 18,),
         SizedBox(height: 10,),
-        TextView("请检查网络设置或稍后重试",color: MyColors.cl_7B8290,size: 14,),
+        TextView("请检查网络设置或稍后重试",color: CstColors.cl_7B8290,size: 14,),
         SizedBox(height: 10,),
         MyButton(text: "重试", onPressed: onPressed,type: 2,)
       ],
@@ -87,7 +87,7 @@ class ViewStateEmptyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        child: ImageHelper.loadAssert("ic_nodata.png",width: 108,height: 120),
+        child: ImageHelper.buildImage("ic_nodata.png",width: 108,height: 120,type: 1),
       ),
     );
   }

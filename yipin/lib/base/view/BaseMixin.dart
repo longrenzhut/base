@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../utils/ImageHelper.dart';
-import '../utils/MyColors.dart';
+import '../utils/CstColors.dart';
 import '../widget/LinearWidget.dart';
 import '../widget/TextView.dart';
 
@@ -52,7 +52,7 @@ mixin BaseMixin {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(width: 6,),
-        TextView(title,size: 16,color: MyColors.cl_00020D,weight: FontWeight.bold),
+        TextView(title,size: 16,color: CstColors.cl_00020D,weight: FontWeight.bold),
       ],
     );
   }
@@ -64,12 +64,12 @@ mixin BaseMixin {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(width: 6,),
-        TextView(title,size: 16,color: MyColors.cl_00020D,weight: FontWeight.bold),
+        TextView(title,size: 16,color: CstColors.cl_00020D,weight: FontWeight.bold),
         Spacer(),
         Offstage(
           offstage: offstage,
           child:   InkWell(
-            child: ImageHelper.loadAssert("ic_close.png",width: 16,height: 16),
+            child: ImageHelper.buildImage("ic_close.png",width: 16,height: 16),
             onTap: (){
               if(onTop != null)
                 onTop();

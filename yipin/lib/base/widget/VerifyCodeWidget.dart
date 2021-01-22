@@ -3,7 +3,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import '../utils/MyColors.dart';
+import '../utils/CstColors.dart';
 import '../widget/TextView.dart';
 
 class VerifyCodeWidget extends StatefulWidget {
@@ -29,8 +29,8 @@ class VerifyCodeWidget extends StatefulWidget {
     this.size: const Size(110,50),
     this.radius: 0,
     this.fontSize:14,
-    this.color : MyColors.cl_0FB36E,
-    this.disabledColor : MyColors.cl_A0A4AB
+    this.color : CstColors.white,
+    this.disabledColor : CstColors.black
   }) : super(key: key);
 
 
@@ -103,7 +103,7 @@ class _VerityCodeWidgetState extends State<VerifyCodeWidget> {
 //        minWidth: 110,
 //        padding: EdgeInsets.symmetric(horizontal: 10),
 //        shape: StadiumBorder(
-//          side: BorderSide(width: 1, color: MyColors.cl_0FB36E),
+//          side: BorderSide(width: 1, color: CstColors.cl_0FB36E),
 //        ),
 //      ),
 //      onTap: (){

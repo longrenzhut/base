@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import '../utils/MyColors.dart';
+import '../utils/CstColors.dart';
 
 class MyDecoration {
 

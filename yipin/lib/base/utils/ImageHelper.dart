@@ -7,20 +7,20 @@ import '../utils/BaseUtils.dart';
 
 class ImageHelper {
 
-  static String png(String name,{int type: 0}){
+  static String png(String name,{int type}){
     if(type == 0)
       return "assets/images/$name";
     return "assets/common/$name";
   }
 
-  static Image buildImage(String name,{double height,double width,int type: 0}){
+  static Image buildImage(String name,{double height,double width,int type:0,BoxFit fit}){
 
-    return Image.asset(png(name,type: type),height: height, width: width,);
+    return Image.asset(png(name),height: height, width: width,fit: fit,);
   }
 
-  static AssetImage buildAssetImage(String name,{double height,double width,int type: 0}){
+  static AssetImage buildAssetImage(String name,{double height,double width}){
 
-    return buildAssetImage(png(name,type: type));
+    return AssetImage(png(name));
   }
 
 
@@ -72,8 +72,6 @@ class ImageHelper {
       ),
     );
   }
-
-
 //  static Widget loadCircle(String url,width){
 //    if(BaseUtils.isEmpty(url))
 //      return  Container(

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../Config.dart';
 import '../cache/Cahes.dart';
-import '../utils/MyColors.dart';
+import '../utils/CstColors.dart';
 import '../widget/MyButton.dart';
 import '../widget/TextView.dart';
 
@@ -18,7 +18,7 @@ class ChangeUtils{
      datas?.forEach((element) {
        var entry = PopupMenuItem<String>(
          value: '$element',
-         child: TextView('$element',color: MyColors.cl_7B8290,size: 16,),
+         child: TextView('$element',color: CstColors.cl_7B8290,size: 16,),
        );
 
        list.add(entry);

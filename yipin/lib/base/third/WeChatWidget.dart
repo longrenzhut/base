@@ -54,15 +54,7 @@ class _WeChatWidgetState extends BaseWidgetState<WeChatWidget,WeChatController> 
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    return InkWell(child: ImageHelper.buildImage("ic_wx.png",type: 1,width: 56,height: 56)
-=======
     return InkWell(child: ImageHelper.buildImage("ic_wx.png",width: 56,height: 56)
->>>>>>> buildapk
-=======
-    return InkWell(child: ImageHelper.buildImage("ic_wx.png",type: 1,width: 56,height: 56)
->>>>>>> 44f0fd10ee0111f9e35ce0c551cef0d3840f2a2d
       ,onTap: () async{
         var isWeChatInstalled = await fluwx.isWeChatInstalled;
         if(isWeChatInstalled){

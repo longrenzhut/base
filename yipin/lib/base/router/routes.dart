@@ -4,6 +4,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import '../../ui/TestPage.dart';
 import '../../ui/login/page/LoginPage.dart';
+import '../../ui/main/page/MainPage.dart';
 import '../BaseApp.dart';
 import '../Config.dart';
 import '../router/RouteModel.dart';
@@ -13,7 +14,7 @@ import '../utils/JsonUtils.dart';
 class Routes {
 
   static const String initRouter = "/";
-  static const String home = "/home";
+  static const String main = "/main";
   static const String login = "/login";
   static const String test = "/test";
 
@@ -26,7 +27,7 @@ class Routes {
     String name = settings.name;
     if(name == "/"){
       if(Config.isLogin){
-        return BaseApp.router.generator(RouteSettings(name: home));
+        return BaseApp.router.generator(RouteSettings(name: main));
       }
       return BaseApp.router.generator(RouteSettings(name: login));
     }
@@ -34,6 +35,7 @@ class Routes {
   }
 
   static List<RouteModel> tabList = [
+    RouteModel(main,"首页",MainPage()),
     RouteModel(test,"测试",TestPage())
   ];
 

@@ -3,7 +3,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../router/RouterHelper.dart';
 
 import '../provider/BaseViewModel.dart';
-import '../utils/MyColors.dart';
+import '../utils/CstColors.dart';
 import '../view/BasePage.dart';
 import '../widget/LinearWidget.dart';
 import '../widget/MyButton.dart';
@@ -21,7 +21,7 @@ class _CustomWebPageState extends BasePageState<CustomWebPage,BaseViewModel> {
 
 
   @override
-  Color get bgColor => MyColors.bgColor;
+  Color get bgColor => CstColors.bgColor;
 
   String get url{
     var map = arguments;

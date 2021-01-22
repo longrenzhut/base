@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../provider/BaseViewModel.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/MyColors.dart';
+import '../utils/CstColors.dart';
 import '../view/BaseMixin.dart';
 
 
@@ -16,6 +16,7 @@ abstract class BasePageState<T extends StatefulWidget,K extends BaseViewModel> e
 
 //  @override
   Color get bgColor => null;
+  bool get isScaffold => true;
 
   bool autoDispose(){
     return true;
@@ -50,11 +51,14 @@ abstract class BasePageState<T extends StatefulWidget,K extends BaseViewModel> e
     ): getView(context);
 
 
+    if(!isScaffold)
+      return _provider;
 
     return Scaffold(
         appBar: getAppBar(context),
         backgroundColor: bgColor,
-        body: _provider
+        body: _provider,
+      bottomNavigationBar: getBottomNavigationBar(context),
     );
   }
 
@@ -75,6 +79,11 @@ abstract class BasePageState<T extends StatefulWidget,K extends BaseViewModel> e
 
   @override
   Widget getAppBar(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget getBottomNavigationBar(BuildContext context) {
     return null;
   }
 

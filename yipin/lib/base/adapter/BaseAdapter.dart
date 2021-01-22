@@ -1,5 +1,5 @@
 
-import '../utils/MyColors.dart';
+import '../utils/CstColors.dart';
 import 'package:flutter/material.dart';
 
 class BaseAdapter<T>{
@@ -10,7 +10,7 @@ class BaseAdapter<T>{
 
   bool isClick = true;
   double divider;
-  Color dividerColor = MyColors.cl_A5AAB4;
+  Color dividerColor = CstColors.cl_A5AAB4;
 
   Function(BuildContext context,int index,T model) onItemClick;
 

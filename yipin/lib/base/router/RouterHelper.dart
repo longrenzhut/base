@@ -45,8 +45,8 @@ class RouterHelper{
 
 
 
-  static void buildHome(BuildContext context){
-    _navigateTo(context,Routes.home,replace: true);
+  static void buildMain(BuildContext context){
+    _navigateTo(context,Routes.main,replace: true);
   }
 
 
