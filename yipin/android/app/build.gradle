@@ -28,7 +28,6 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId configProperties['applicationId']
         minSdkVersion configProperties['minSdkVersion']
         targetSdkVersion configProperties['targetSdkVersion']
@@ -59,9 +58,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
         }
     }
 
