@@ -33,7 +33,7 @@ class _MainPageState extends BasePageState<MainPage,MainVM> {
 
   @override
   Widget getBottomNavigationBar(BuildContext context) {
-    return BottomBarWidget(indexCallback: (index){
+    return BottomBarWidget(callback: (index){
       viewModel.indexStackController.setIndex(index);
     },);
   }

@@ -19,9 +19,6 @@ class BaseViewModel with ChangeNotifier{
     return cancelToken;
   }
 
-  //当前表的总条数
-  int total = 0;
-
 
   bool init = false;
 
@@ -40,8 +37,6 @@ class BaseViewModel with ChangeNotifier{
   }
 
   Future<dynamic> getJ(String url,Params params,ReqCallBack reqCallBack) {
-    var cancelToken = CancelToken();
-    cancelTokenList.add(cancelToken);
     return  HttpUtils.instance().getJ(url, params,cancelToken: cancelToken,callBack: reqCallBack);
   }
 

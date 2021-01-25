@@ -52,6 +52,8 @@ dependencies:
   #插件
   device_info:
   package_info:
+#  权限
+  permission_handler: 5.0.1+1
 
   #适配
   flutter_screenutil: ^4.0.2+3

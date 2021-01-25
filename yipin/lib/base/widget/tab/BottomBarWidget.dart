@@ -9,9 +9,9 @@ import '../../../base/view/BaseWidget.dart';
 class BottomBarWidget extends StatefulWidget {
 
   final BottomBarController controller;
-  final Function(int index) indexCallback;
+  final Function(int index) callback;
 
-  const BottomBarWidget({Key key, this.controller,this.indexCallback}) : super(key: key);
+  const BottomBarWidget({Key key, this.controller,this.callback}) : super(key: key);
 
   @override
   _BottomBarWidgetState createState() => _BottomBarWidgetState();
@@ -26,7 +26,7 @@ class _BottomBarWidgetState extends BaseWidgetState<BottomBarWidget,BottomBarCon
   void initState() {
     // TODO: implement initState
     super.initState();
-    controller.setIndexCallback(widget.indexCallback);
+    controller.setcallback(widget.callback);
   }
 
   @override
@@ -100,17 +100,17 @@ class BottomBarController extends BaseWidgetController{
     )).toList();
   }
 
-  Function(int index) indexCallback;
+  Function(int index) callback;
 
-  setIndexCallback(Function(int index) indexCallback){
-    this.indexCallback = indexCallback;
+  setcallback(Function(int index) callback){
+    this.callback = callback;
   }
 
   @override
   void setIndex(int index) {
     // TODO: implement setIndex
     super.setIndex(index);
-    indexCallback?.call(index);
+    callback?.call(index);
   }
 
 }
