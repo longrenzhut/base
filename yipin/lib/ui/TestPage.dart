@@ -1,3 +1,6 @@
+import 'package:open_settings/open_settings.dart';
+import 'package:yipin/base/utils/LaunchUtils.dart';
+
 import '../base/utils/ImageHelper.dart';
 
 import '../base/extension/WidgetExt.dart';
@@ -101,6 +104,10 @@ class _TestPageState extends BasePageState<TestPage,TestVM> {
                     itemCount: 10,
                   );
                 }))
+        ),
+        WidgetUtils.buildSliverPadding(
+          padding: EdgeInsets.all(20.0),
+            child: Text("头部11").buildInkWell(() => OpenSettings.openDateSetting())
         ),
       ],
       viewModel: viewModel,

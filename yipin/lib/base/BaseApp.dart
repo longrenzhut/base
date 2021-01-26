@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import '../base/utils/ChangeUtils.dart';
@@ -22,12 +24,23 @@ class BaseApp{
     _router = FluroRouter();
     Routes.configureRoutes(router);
 
+
 //    GetIt.instance.registerSingleton(NavigateService());
     await Cache.initSp();
-    // await PCacheImage.init();
     LoginUtils.instance().init();
     ChangeUtils.init();
+
+    if (Platform.isIOS || Platform.isAndroid) {
+
+    }
   }
+
+  // var locator = GetIt();
+  // void setupLocator() {
+  //   TelAndSmsServic
+  //   locator.registerSingleton(TelAndSmsService());
+  // }
+
 
 
 

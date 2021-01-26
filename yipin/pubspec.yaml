@@ -52,6 +52,7 @@ dependencies:
   #插件
   device_info:
   package_info:
+  open_settings:
 #  权限
   permission_handler: 5.0.1+1
 
