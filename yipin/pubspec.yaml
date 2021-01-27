@@ -79,7 +79,7 @@ dependencies:
   #  web_browser:
 
   universal_html:
-  flutter_widget_from_html_core: ^0.5.1+4
+#  flutter_widget_from_html_core: ^0.5.1+4
 
   #  rxdart:
   #  event_bus:

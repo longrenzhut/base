@@ -30,9 +30,9 @@ class BaseApp{
     LoginUtils.instance().init();
     ChangeUtils.init();
 
-    if (Platform.isIOS || Platform.isAndroid) {
-
-    }
+    // if (Platform.isIOS || Platform.isAndroid) {
+    //
+    // }
   }
 
   // var locator = GetIt();
