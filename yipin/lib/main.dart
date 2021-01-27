@@ -4,6 +4,7 @@ import 'package:flutter/physics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lifecycle/lifecycle.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'base/utils/CstColors.dart';
 import 'base/BaseApp.dart';
@@ -67,7 +68,7 @@ class MyApp extends StatelessWidget {
             const Locale('en', 'US'),
           ],
           builder: BotToastInit(),
-          navigatorObservers: [BotToastNavigatorObserver()],
+          navigatorObservers: [BotToastNavigatorObserver(),defaultLifecycleObserver],
           localizationsDelegates: [
             RefreshLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,

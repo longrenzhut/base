@@ -1,21 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:open_settings/open_settings.dart';
-import 'package:yipin/base/utils/LaunchUtils.dart';
-
-import '../base/utils/ImageHelper.dart';
-
-import '../base/extension/WidgetExt.dart';
-import '../base/extension/ListExt.dart';
 
 import '../base/adapter/BaseAdapter.dart';
-
+import '../base/extension/WidgetExt.dart';
+import '../base/utils/ImageHelper.dart';
 import '../base/utils/WidgetUtils.dart';
-
-
-import 'package:flutter/material.dart';
-import '../base/widget/ptr/PtrSliverListWidget.dart';
-import 'TestVM.dart';
 import '../base/view/BasePage.dart';
 import '../base/widget/AnimWidget.dart';
+import '../base/widget/ptr/PtrSliverListWidget.dart';
+import 'TestVM.dart';
 
 
 class TestPage extends StatefulWidget {
@@ -23,7 +16,7 @@ class TestPage extends StatefulWidget {
   _TestPageState createState() => _TestPageState();
 }
 
-class _TestPageState extends BasePageState<TestPage,TestVM> {
+class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
   
   @override
   TestVM getViewModel() =>  TestVM();
@@ -120,6 +113,16 @@ class _TestPageState extends BasePageState<TestPage,TestVM> {
       ),
 
     );
+  }
+
+  @override
+  void onPause() {
+    print("---- test onPause");
+  }
+
+  @override
+  void onResume() {
+    print("---- test onResume");
   }
 }
 

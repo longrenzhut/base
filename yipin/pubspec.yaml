@@ -36,13 +36,18 @@ dependencies:
   dio:  #latest version
   bot_toast: ^3.0.5
   shared_preferences:
+    #路由
   fluro:
+#  thrio: ^1.7.6
 
 #    微信支付以及登录
   fluwx:
   #UI
   pull_to_refresh:
   lazy_load_refresh_indicator:
+
+  #生命周期监听
+  lifecycle: ^0.1.1+1
   #轮播
   flutter_swiper:
   #图片缓存

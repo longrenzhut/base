@@ -1,10 +1,10 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../base/router/RouterHelper.dart';
-import '../../../base/router/routes.dart';
 
 import '../../../base/adapter/BaseAdapter.dart';
+import '../../../base/router/RouterHelper.dart';
+import '../../../base/router/routes.dart';
 import '../../../base/utils/WidgetUtils.dart';
 import '../../../base/view/BasePage.dart';
 import '../../../base/widget/ptr/PtrSliverListWidget.dart';
@@ -15,7 +15,7 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends BasePageState<LoginPage,LoginVM> {
+class _LoginPageState extends LifecyclePageState<LoginPage,LoginVM> {
 
   @override
   LoginVM getViewModel() =>  LoginVM();
@@ -49,6 +49,17 @@ class _LoginPageState extends BasePageState<LoginPage,LoginVM> {
       ),
 
     );
+  }
+
+
+  @override
+  void onPause() {
+    print("---- login onPause");
+  }
+
+  @override
+  void onResume() {
+    print("---- login onResume");
   }
 }
 
