@@ -1,5 +1,5 @@
-library md2_tab_indicator;
 
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 enum MD2IndicatorSize {
@@ -12,13 +12,13 @@ class MD2Indicator extends Decoration {
   final double indicatorHeight;
   final Color indicatorColor;
   final MD2IndicatorSize indicatorSize;
-  final double paddingtop;
+  final double paddingTop;
 
   const MD2Indicator(
-      {@required this.indicatorHeight,
-        @required this.indicatorColor,
-        @required this.indicatorSize,
-      this.paddingtop:5.0});
+      { this.indicatorHeight: 2.0,
+         this.indicatorColor: Colors.black,
+         this.indicatorSize:MD2IndicatorSize.tiny,
+      this.paddingTop:5.0});
 
   @override
   _MD2Painter createBoxPainter([VoidCallback onChanged]) {
@@ -41,15 +41,15 @@ class _MD2Painter extends BoxPainter {
     Rect rect;
     if (decoration.indicatorSize == MD2IndicatorSize.full) {
       rect = Offset(offset.dx,
-          (configuration.size.height - decoration.paddingtop - decoration.indicatorHeight ?? 3))
+          (configuration.size.height - decoration.paddingTop - decoration.indicatorHeight ?? 3))
       & Size(configuration.size.width, decoration.indicatorHeight ?? 3);
     } else if (decoration.indicatorSize == MD2IndicatorSize.normal) {
       rect = Offset(offset.dx + 6,
-          (configuration.size.height - decoration.paddingtop -decoration.indicatorHeight ?? 3))
+          (configuration.size.height - decoration.paddingTop -decoration.indicatorHeight ?? 3))
       & Size(configuration.size.width - 12, decoration.indicatorHeight ?? 3);
     } else if (decoration.indicatorSize == MD2IndicatorSize.tiny) {
       rect = Offset(offset.dx + configuration.size.width / 2 - 8,
-          (configuration.size.height - decoration.paddingtop - decoration.indicatorHeight ?? 3))
+          (configuration.size.height - decoration.paddingTop - decoration.indicatorHeight ?? 3))
       & Size(16, decoration.indicatorHeight ?? 3);
     }
 

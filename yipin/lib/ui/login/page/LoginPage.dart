@@ -15,14 +15,16 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends LifecyclePageState<LoginPage,LoginVM> {
+class _LoginPageState extends BasePageState<LoginPage,LoginVM> {
 
   @override
   LoginVM getViewModel() =>  LoginVM();
 
 
+
   @override
   Widget getView(BuildContext context) {
+
     return PtrSliverListWidget(
       slivers: [
         WidgetUtils.buildSliverPadding(
@@ -53,13 +55,7 @@ class _LoginPageState extends LifecyclePageState<LoginPage,LoginVM> {
 
 
   @override
-  void onPause() {
-    print("---- login onPause");
-  }
+  bool get wantKeepAlive => true;
 
-  @override
-  void onResume() {
-    print("---- login onResume");
-  }
 }
 

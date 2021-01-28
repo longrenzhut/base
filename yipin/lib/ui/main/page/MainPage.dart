@@ -37,4 +37,7 @@ class _MainPageState extends BasePageState<MainPage,MainVM> {
       viewModel.indexStackController.setIndex(index);
     },);
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

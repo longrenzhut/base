@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:open_settings/open_settings.dart';
+import 'package:tab_indicator_styler/tab_indicator_styler.dart';
+import 'package:yipin/base/utils/ToastUtil.dart';
+import 'package:yipin/base/widget/tab/TabBarWidget.dart';
+import 'package:yipin/base/widget/tab/TabPageWidget.dart';
+import 'package:yipin/ui/login/page/LoginPage.dart';
+import 'package:yipin/ui/main/page/MainPage.dart';
+import '../base/router/routes.dart';
+import '../base/router/RouterHelper.dart';
 
 import '../base/adapter/BaseAdapter.dart';
 import '../base/extension/WidgetExt.dart';
@@ -12,6 +20,7 @@ import 'TestVM.dart';
 
 
 class TestPage extends StatefulWidget {
+
   @override
   _TestPageState createState() => _TestPageState();
 }
@@ -23,8 +32,12 @@ class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
 
   bool isFirst = true;
 
+  int get type => arguments["type"]??0;
+
   @override
   Widget getView(BuildContext context) {
+    if(type == 1)
+      return _tabWidget();
     return PtrSliverListWidget(
       slivers: [
         WidgetUtils.buildSliverPadding(
@@ -48,9 +61,9 @@ class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
                   secondChild:  ImageHelper.buildImage("ic_home_selector.png",width: 20,height: 20,type: 1,fit: BoxFit.fitHeight),
                 ),
                     onTap: (){
-                      setState(() {
                         isFirst = !isFirst;
-                      });
+                        viewModel.notifyUI();
+                        ToastUtil.showToast("$type");
                       // viewModel.notifyUI();
                     }),
               ],
@@ -58,14 +71,17 @@ class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
         ),
         WidgetUtils.buildSliverPadding(
           padding: EdgeInsets.all(20.0),
-            child: Text("头部").buildInkWell(() => showBottomSheet(
-                context: context,
-                backgroundColor: Colors.lightGreenAccent,
-                elevation:20,
-                shape: CircleBorder(),
-                builder: (context) {
-                  return Container(height: 200);
-                }))
+            child: Text("头部").buildInkWell(() =>
+              RouterHelper.build(context, RouteSettings(name: Routes.test,arguments: {"type": 1}))
+                // showBottomSheet(
+                // context: context,
+                // backgroundColor: Colors.lightGreenAccent,
+                // elevation:20,
+                // shape: CircleBorder(),
+                // builder: (context) {
+                //   return Container(height: 200);
+                // })
+            )
         ),
         WidgetUtils.buildSliverPadding(
           padding: EdgeInsets.all(20.0),
@@ -100,7 +116,7 @@ class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
         ),
         WidgetUtils.buildSliverPadding(
           padding: EdgeInsets.all(20.0),
-            child: Text("头部11").buildInkWell(() => OpenSettings.openDateSetting())
+            child: Text("头部11").buildInkWell(() =>  RouterHelper.build(context, RouteSettings(name: Routes.login)))
         ),
       ],
       viewModel: viewModel,
@@ -112,6 +128,19 @@ class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
           }
       ),
 
+    );
+  }
+
+
+  _tabWidget(){
+    return TabPageWidget(
+      tabTitles: [
+        "11111","22222"
+      ],
+      pages: [
+        LoginPage(),
+        MainPage(),
+      ],
     );
   }
 

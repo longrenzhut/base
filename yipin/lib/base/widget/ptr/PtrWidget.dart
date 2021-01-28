@@ -119,7 +119,7 @@ class PtrController extends RefreshController with BaseController{
 
   set state(int value) {
     _state = value;
-    notifyWidget();
+    notifyWidget?.call();
   }
 }
 

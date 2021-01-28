@@ -16,10 +16,22 @@ mixin BaseMixin {
   }
 
 
-  Map  argumentOf(BuildContext context) {
-    Map map = ModalRoute.of(context).settings.arguments;
-    return map;
+  Map _argumentsMap;
+  Map argumentOf(BuildContext context) {
+    if(null == _argumentsMap)
+      _argumentsMap = ModalRoute.of(context).settings.arguments;
+    if(null == _argumentsMap){
+      _argumentsMap = {};
+    }
+    if(_argumentsMap.isNotEmpty)
+      print("页面参数传递： " + _argumentsMap.toString());
+    return _argumentsMap;
   }
+
+  // Map argumentOf(BuildContext context) {
+  //   var argumentMap = ModalRoute.of(context).settings.arguments;
+  //   return argumentMap;
+  // }
 
 
 

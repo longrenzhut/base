@@ -1,7 +1,4 @@
 
-
-import 'dart:io';
-
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
@@ -74,6 +71,12 @@ class MyApp extends StatelessWidget {
             const Locale('en', 'US'),
           ],
           builder: BotToastInit(),
+    //       builder: (context, widget) {
+    // return MediaQuery(
+    // ///Setting font does not change with system font size
+    // data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+    // child: widget,
+    // );
           navigatorObservers: [BotToastNavigatorObserver(),defaultLifecycleObserver],
           localizationsDelegates: [
             RefreshLocalizations.delegate,

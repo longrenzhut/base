@@ -31,11 +31,7 @@ abstract class BasePageState<T extends StatefulWidget,K extends BaseViewModel> e
   }
 
 
-
-  Map get arguments {
-    Map map = argumentOf(context);
-    return map;
-  }
+  Map get arguments => argumentOf(context);
 
 
 
@@ -53,12 +49,14 @@ abstract class BasePageState<T extends StatefulWidget,K extends BaseViewModel> e
 
 
     if(!isScaffold)
-      return _provider;
+      return Material(
+        child: _provider,
+      );
 
     return Scaffold(
-        appBar: getAppBar(context),
-        backgroundColor: bgColor,
-        body: _provider,
+      appBar: getAppBar(context),
+      backgroundColor: bgColor,
+      body: _provider,
       bottomNavigationBar: getBottomNavigationBar(context),
     );
   }

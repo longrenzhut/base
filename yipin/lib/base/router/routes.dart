@@ -54,7 +54,7 @@ class Routes {
     tabList.forEach((element) {
       router.define(element.path, handler: MyHandler(
           func: (context,map){
-           // final args = context.settings.arguments;
+            // context.settings.arguments = map;
             return element.child; //LoginPage();
           }
       ));
