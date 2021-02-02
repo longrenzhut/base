@@ -1,4 +1,5 @@
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../controller/BaseController.dart';
@@ -61,6 +62,8 @@ class _PtrWidgetState extends State<PtrWidget> {
     return SmartRefresher(
       // physics: AlwaysScrollableScrollPhysics(),
       enablePullDown: true,
+      // dragStartBehavior: DragStartBehavior.down,
+      // primary:true,
       enableTwoLevel:widget.enableTwoLevel,
       enablePullUp: widget.enablePullUp,
       controller: controller,

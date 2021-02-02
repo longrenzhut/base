@@ -46,6 +46,9 @@ dependencies:
   pull_to_refresh:
   lazy_load_refresh_indicator:
   tab_indicator_styler: ^1.0.0
+#  动画
+  animate_do:
+
   #生命周期监听
   lifecycle: ^0.1.1+1
   #轮播

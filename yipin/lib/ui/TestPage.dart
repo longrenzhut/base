@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:open_settings/open_settings.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
@@ -26,7 +27,7 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
-  
+
   @override
   TestVM getViewModel() =>  TestVM();
 
@@ -41,15 +42,49 @@ class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
     return PtrSliverListWidget(
       slivers: [
         WidgetUtils.buildSliverPadding(
-          padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: Text("头部").buildInkWell(() => showBottomSheet(
                 context: context,
                 builder: (context) {
-                  return Container(height: 200, color: Colors.lightBlue);
+                  return Container(height: 30, color: Colors.lightBlue);
                 }))
         ),
         WidgetUtils.buildSliverPadding(
-          padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
+            child: Column(
+              children: <Widget>[
+                FadeInLeft(
+                    delay: Duration(milliseconds: 1000),
+                    child: Container(height: 30, width:30,color: Colors.lightBlue) ),
+                FadeInUp(  delay: Duration(milliseconds: 1000),child: Container(height: 30, width:30, color: Colors.lightBlue) ),
+                FadeInDown(  delay: Duration(milliseconds: 1000),child: Container(height: 30,  width:30,color: Colors.lightBlue) ),
+              ],
+            )
+        ),
+        WidgetUtils.buildSliverPadding(
+            padding: EdgeInsets.all(20.0),
+            child: Column(
+              children: <Widget>[
+                BounceInDown(child: Container(height: 30,  width:30,color: Colors.lightBlue) ),
+                BounceInUp(child: Container(height: 30,  width:30,color: Colors.lightBlue) ),
+                BounceInLeft(child: Container(height: 30,  width:30,color: Colors.lightBlue) ),
+                BounceInRight(child: Container(height: 30,  width:30,color: Colors.lightBlue) ),
+              ],
+            )
+        ),
+        WidgetUtils.buildSliverPadding(
+            padding: EdgeInsets.all(20.0),
+            child: Column(
+              children: <Widget>[
+                SlideInDown(child: Container(height: 30,  width:30,color: Colors.lightBlue) ),
+                SlideInUp(child: Container(height: 30,  width:30,color: Colors.lightBlue) ),
+                SlideInLeft(child: Container(height: 30,  width:30,color: Colors.lightBlue) ),
+                SlideInRight(child: Container(height: 30,  width:30,color: Colors.lightBlue) ),
+              ],
+            )
+        ),
+        WidgetUtils.buildSliverPadding(
+            padding: EdgeInsets.all(20.0),
             child: Column(
               children: [
                 AnimWidget(),
@@ -61,30 +96,30 @@ class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
                   secondChild:  ImageHelper.buildImage("ic_home_selector.png",width: 20,height: 20,type: 1,fit: BoxFit.fitHeight),
                 ),
                     onTap: (){
-                        isFirst = !isFirst;
-                        viewModel.notifyUI();
-                        ToastUtil.showToast("$type");
+                      isFirst = !isFirst;
+                      viewModel.notifyUI();
+                      ToastUtil.showToast("$type");
                       // viewModel.notifyUI();
                     }),
               ],
             )
         ),
         WidgetUtils.buildSliverPadding(
-          padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: Text("头部").buildInkWell(() =>
-              RouterHelper.build(context, RouteSettings(name: Routes.test,arguments: {"type": 1}))
-                // showBottomSheet(
-                // context: context,
-                // backgroundColor: Colors.lightGreenAccent,
-                // elevation:20,
-                // shape: CircleBorder(),
-                // builder: (context) {
-                //   return Container(height: 200);
-                // })
+                RouterHelper.build(context, RouteSettings(name: Routes.test,arguments: {"type": 1}))
+              // showBottomSheet(
+              // context: context,
+              // backgroundColor: Colors.lightGreenAccent,
+              // elevation:20,
+              // shape: CircleBorder(),
+              // builder: (context) {
+              //   return Container(height: 30);
+              // })
             )
         ),
         WidgetUtils.buildSliverPadding(
-          padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: Text("头部").buildInkWell(() => showModalBottomSheet(
                 context: context,
                 builder: (BuildContext context) {
@@ -98,7 +133,7 @@ class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
                 }))
         ),
         WidgetUtils.buildSliverPadding(
-          padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: Text("头部").buildInkWell(() => showModalBottomSheet(
                 context: context,
                 isScrollControlled: false,
@@ -115,7 +150,7 @@ class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
                 }))
         ),
         WidgetUtils.buildSliverPadding(
-          padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: Text("头部11").buildInkWell(() =>  RouterHelper.build(context, RouteSettings(name: Routes.login)))
         ),
       ],
