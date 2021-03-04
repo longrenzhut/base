@@ -17,6 +17,7 @@ class PtrSliverListWidget extends StatelessWidget {
   final ListViewModel viewModel;
   final bool enablePullUp;
   final List<Widget> slivers;
+  final Future Function() future;
 
 
   const PtrSliverListWidget({Key key,
@@ -25,7 +26,8 @@ class PtrSliverListWidget extends StatelessWidget {
     this.viewModel,
     this.adapter,
     this.slivers,
-    this.enablePullUp:true
+    this.enablePullUp:true,
+    this.future
   }
       ) : super(key: key);
 
@@ -35,8 +37,12 @@ class PtrSliverListWidget extends StatelessWidget {
     return PtrWidget(
       enablePullUp: enablePullUp,
       controller: viewModel.refreshController,
-      onRefresh: viewModel.refresh,
-      onLoading: viewModel.loadMore,
+      onRefresh: (){
+        return viewModel.refresh(future);
+      },
+      onLoading: (){
+        return viewModel.loadMore(future);
+      },
       builder: (context){
         if(viewModel.list.isEmpty){
           return ViewStateEmptyWidget();

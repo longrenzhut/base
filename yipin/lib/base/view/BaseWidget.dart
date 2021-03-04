@@ -101,6 +101,10 @@ class BaseWidgetController with BaseController {
         url, data: map, token: cancelToken);
   }
 
+  Future<dynamic> postFile(String url, Params params,ReqCallBack reqCallBack) {
+    return HttpUtils.instance().postFile(url,params,callBack: reqCallBack, cancelToken: cancelToken);
+  }
+
 
   //通信
   RxBusUtils rxBusUtils;

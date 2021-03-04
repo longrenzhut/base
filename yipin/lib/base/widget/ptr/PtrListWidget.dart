@@ -17,14 +17,20 @@ class PtrListWidget extends StatelessWidget {
   final double itemExtent;
   final ListViewModel viewModel;
   final bool enablePullUp;
+  final Future Function() future;
+  final bool enablePullDown;
+  final bool init;
 
 
   const PtrListWidget({Key key,
     this.padding,
     this.itemExtent,
+    this.future,
     this.viewModel,
+    this.init:true,
     this.adapter,
-    this.enablePullUp:true
+    this.enablePullUp:true,
+    this.enablePullDown:true
   }
       ) : super(key: key);
 
@@ -32,10 +38,16 @@ class PtrListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return PtrWidget(
+      init: init,
+      enablePullDown: enablePullDown,
       enablePullUp: enablePullUp,
       controller: viewModel.refreshController,
-      onRefresh: viewModel.refresh,
-      onLoading: viewModel.loadMore,
+      onRefresh: (){
+       return viewModel.refresh(future);
+      },
+      onLoading: (){
+        return viewModel.loadMore(future);
+      },
       builder: (context){
         if(viewModel.list.isEmpty){
           return ViewStateEmptyWidget();

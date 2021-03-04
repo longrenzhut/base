@@ -12,7 +12,13 @@ class TabPageWidget extends StatefulWidget {
   final double barHeight;
   final TabPageController controller;
 
-  const TabPageWidget({Key key,this.tabTitles, this.barHeight:54, this.controller,this.pages}) : super(key: key);
+  final Decoration indicator;
+  final Decoration decoration;
+  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry margin;
+  final ScrollPhysics barPhysics;
+
+  const TabPageWidget({Key key,this.tabTitles,this.barPhysics, this.barHeight:54, this.controller,this.pages, this.indicator, this.decoration, this.padding, this.margin}) : super(key: key);
   @override
   _TabPageWidgetState createState() => _TabPageWidgetState();
 }
@@ -31,11 +37,17 @@ class _TabPageWidgetState extends BaseWidgetState<TabPageWidget,TabPageControlle
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
         appBar: TabBarWidget(
+          indicator:widget.indicator,
+          decoration:widget.decoration,
+          padding:widget.padding,
+          margin:widget.margin,
           height: widget.barHeight,
           controller: controller.controller,
         ),
         body: TabBarView(
+          physics: widget.barPhysics,
           controller: controller.controller,
           children: widget.pages,
         ),

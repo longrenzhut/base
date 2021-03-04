@@ -46,6 +46,11 @@ dependencies:
   pull_to_refresh:
   lazy_load_refresh_indicator:
   tab_indicator_styler: ^1.0.0
+  auto_size_text: ^2.1.0
+#控件库
+  getwidget: ^1.2.4
+#  柱状图
+  charts_flutter: ^0.9.0
 #  动画
   animate_do:
 
@@ -68,6 +73,8 @@ dependencies:
   #适配
   flutter_screenutil: ^4.0.2+3
   mime_type: ^0.3.1
+
+  flutter_common_utils: ^1.1.0
   #  图片选择器
   file_picker:
   image_picker: #^0.6.7

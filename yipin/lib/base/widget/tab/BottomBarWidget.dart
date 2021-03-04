@@ -26,24 +26,24 @@ class _BottomBarWidgetState extends BaseWidgetState<BottomBarWidget,BottomBarCon
   void initState() {
     // TODO: implement initState
     super.initState();
-    controller.setcallback(widget.callback);
+    controller.setCallback(widget.callback);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          color: Colors.white,
-        boxShadow:[
-          BoxShadow(
-            color: CstColors.cl_7DD1D1D1,
-            offset: Offset(0.0, -3.0), //阴影xy轴偏移量
-            blurRadius: 15.0, //阴影模糊程度
-              spreadRadius: 6.0 //阴影扩散程度
-          )
-        ]
-      ),
-        height: 54,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow:[
+              BoxShadow(
+                  color: CstColors.cl_7DD1D1D1,
+                  offset: Offset(0.0, -3.0), //阴影xy轴偏移量
+                  blurRadius: 15.0, //阴影模糊程度
+                  spreadRadius: 6.0 //阴影扩散程度
+              )
+            ]
+        ),
+        height: 52,
         child: Row(
           children: List.generate(controller.barList.length, (index) {
             var model = controller.barList[index];
@@ -52,20 +52,20 @@ class _BottomBarWidgetState extends BaseWidgetState<BottomBarWidget,BottomBarCon
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AnimatedCrossFade(
-                  duration: Duration(milliseconds: 500),
+                  duration: Duration(milliseconds: 300),
                   crossFadeState:
                   controller.index == index ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-                  firstChild:  ImageHelper.buildImage(model.iconSelected,width: 20,height: 20,type: 1,fit: BoxFit.fitHeight),
-                  secondChild:  ImageHelper.buildImage(model.icon,width: 20,height: 20,type: 1,fit: BoxFit.fitHeight),
+                  firstChild:  ImageHelper.buildImage(model.iconSelected,width: 26,height: 26,type: 1,fit: BoxFit.fitHeight),
+                  secondChild:  ImageHelper.buildImage(model.icon,width: 26,height: 26,type: 1,fit: BoxFit.fitHeight),
                 ),
 
-                SizedBox(height: 8,),
+                SizedBox(height: 3,),
                 AnimatedCrossFade(
-                  duration: Duration(milliseconds: 500),
+                  duration: Duration(milliseconds: 300),
                   crossFadeState:
                   controller.index == index ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-                  firstChild:  TextView(model.title,color: CstColors.black,size: 12,),
-                  secondChild:  TextView(model.title,color: CstColors.cl_727066,size: 12,),
+                  firstChild:  TextView(model.title,color: CstColors.cl_1F2736,size: 11,),
+                  secondChild:  TextView(model.title,color: CstColors.cl_B9BEC3,size: 11,),
                 ),
 
               ],
@@ -73,7 +73,7 @@ class _BottomBarWidgetState extends BaseWidgetState<BottomBarWidget,BottomBarCon
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               onTap: () async{
-                  controller.setIndex(index);
+                controller.setIndex(index);
               },
             )
             );
@@ -85,9 +85,9 @@ class _BottomBarWidgetState extends BaseWidgetState<BottomBarWidget,BottomBarCon
 }
 
 class BottomBarController extends BaseWidgetController{
-  List<String> titles = ["首页","用户","营销","我的"];
-  List<String> resourceSel = ["ic_home_selector.png","ic_users_selector.png","ic_marketing_selector.png","ic_my_selector.png"];
-  List<String> resource = ["ic_home.png","ic_users.png","ic_marketing.png","ic_my.png"];
+  List<String> titles = ["跑动","客户","分析","联系人"];
+  List<String> resourceSel = ["ic_running_selector.png","ic_customer_selector.png","ic_analysis_selector.png","ic_contract_selector.png"];
+  List<String> resource = ["ic_running.png","ic_customer.png","ic_analysis.png","ic_contract.png"];
 
   List<ItemModel> barList;
 
@@ -102,17 +102,17 @@ class BottomBarController extends BaseWidgetController{
 
   Function(int index) callback;
 
-  setcallback(Function(int index) callback){
+  setCallback(Function(int index) callback){
     this.callback = callback;
   }
 
+
   @override
-  void setIndex(int index) {
+  void setIndex(int index, {bool isNotify = true}) {
     // TODO: implement setIndex
     super.setIndex(index);
     callback?.call(index);
   }
-
 }
 
 

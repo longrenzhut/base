@@ -10,7 +10,9 @@ import '../../provider/StateWidget.dart';
 class PtrWidget extends StatefulWidget {
 
   final bool enablePullUp;
+  final bool enablePullDown;
   final bool enableTwoLevel;
+  final bool init;
   final Future Function() onRefresh;
   final Future Function() onLoading;
   final Widget Function(BuildContext context) builder;
@@ -22,7 +24,9 @@ class PtrWidget extends StatefulWidget {
     this.onRefresh,
     this.onLoading,
     this.enablePullUp:false,
+    this.enablePullDown:true,
     this.enableTwoLevel:false,
+    this.init:true,
     this.builder
   }
       ) : super(key: key);
@@ -46,6 +50,7 @@ class _PtrWidgetState extends State<PtrWidget> {
         });
       }
     });
+    if(widget.init)
     initData();
     super.initState();
   }
@@ -61,7 +66,7 @@ class _PtrWidgetState extends State<PtrWidget> {
 
     return SmartRefresher(
       // physics: AlwaysScrollableScrollPhysics(),
-      enablePullDown: true,
+      enablePullDown: widget.enablePullDown,
       // dragStartBehavior: DragStartBehavior.down,
       // primary:true,
       enableTwoLevel:widget.enableTwoLevel,

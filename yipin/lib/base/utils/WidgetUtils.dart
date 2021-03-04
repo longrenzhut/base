@@ -56,11 +56,36 @@ class WidgetUtils {
 
 
 
+  static PageView buildPageView({BaseAdapter adapter,
+    Axis scrollDirection = Axis.horizontal,
+    bool pageSnapping:true,
+  PageController controller,
+    Function(int  value) onPageChanged,
+  }){
+
+
+    return PageView.builder(
+      pageSnapping: pageSnapping,
+      controller: controller,
+      onPageChanged: onPageChanged,
+      scrollDirection: scrollDirection,
+      itemCount: adapter.getItemCount(),
+      itemBuilder: (context, index) {
+        return adapter.onCreateViewHolder(context, index);
+      },
+    );
+  }
+
+
   static Widget buildGrid({
     BaseAdapter adapter,
     int crossAxisCount: 2,
+    double crossAxisSpacing:0,
+    double mainAxisSpacing : 0,
     EdgeInsetsGeometry padding,
-    double childAspectRatio
+    double childAspectRatio:1,
+    ScrollPhysics physics,
+    bool shrinkWrap:true,
 
   }){
     if(adapter.getItemCount() == 0)
@@ -68,12 +93,14 @@ class WidgetUtils {
 
     return GridView.builder(
       padding:padding,
+      shrinkWrap: shrinkWrap,
+      physics: physics,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
+          crossAxisCount: crossAxisCount,
 
-        childAspectRatio: childAspectRatio,
-//          crossAxisSpacing: 2,
-//          mainAxisSpacing: 4
+          childAspectRatio: childAspectRatio,
+          crossAxisSpacing: crossAxisSpacing,
+          mainAxisSpacing: mainAxisSpacing
       ),
       itemBuilder: (context, index) {
         return adapter.onCreateViewHolder(context, index);
@@ -84,6 +111,23 @@ class WidgetUtils {
 
 
 
+
+  static SliverGrid buildSliverGrid({
+    BaseAdapter adapter,
+    double crossAxisSpacing:0,
+    double mainAxisSpacing : 0,
+    int crossAxisCount:2,
+    double childAspectRatio:1.0,
+  }) {
+
+    return  SliverGrid(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            childAspectRatio:childAspectRatio,
+            crossAxisCount: crossAxisCount, crossAxisSpacing: crossAxisSpacing, mainAxisSpacing: mainAxisSpacing),
+        delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+          return adapter.onCreateViewHolder(context, index);
+        }, childCount: adapter.getItemCount()));
+  }
 
   static SliverMultiBoxAdaptorWidget buildSliverList({
     BaseAdapter adapter,
@@ -133,6 +177,13 @@ class WidgetUtils {
     );
   }
 
+  static SliverToBoxAdapter buildSliverToBoxAdapter({Widget child,
+  }){
+    return SliverToBoxAdapter(
+      child: child,
+    );
+  }
+
   static SliverVisibility buildSliverVisibility({Widget child,
     bool visible:true
   }){
@@ -145,7 +196,7 @@ class WidgetUtils {
   }
 
   //此组件充满视口剩余空间，通常用于最后一个sliver组件，以便于没有任何剩余控件。
-  static SliverFillRemaining buildSliverFillRemaining({Widget child,bool hasScrollBody,
+  static SliverFillRemaining buildSliverFillRemaining({Widget child,bool hasScrollBody:false,
   }){
     return SliverFillRemaining(
       hasScrollBody: hasScrollBody,
@@ -162,7 +213,7 @@ class WidgetUtils {
           return builder(context,model);
         },
       ),
-    );;
+    );
   }
 
 }

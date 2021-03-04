@@ -52,8 +52,8 @@ class MyApp extends StatelessWidget {
             // primarySwatch: Colors.green,//主题色
               primaryColor: Colors.white,//导航栏颜色
               canvasColor: CstColors.bgColor,//画布颜色
-              buttonTheme: ButtonThemeData(minWidth: double.infinity, height: double.infinity,
-                  layoutBehavior:ButtonBarLayoutBehavior.constrained)
+              // buttonTheme: ButtonThemeData(minWidth: double.infinity, height: double.infinity,
+              //     layoutBehavior:ButtonBarLayoutBehavior.constrained)
 
           ),
 

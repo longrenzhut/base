@@ -18,7 +18,7 @@ class MD2Indicator extends Decoration {
       { this.indicatorHeight: 2.0,
          this.indicatorColor: Colors.black,
          this.indicatorSize:MD2IndicatorSize.tiny,
-      this.paddingTop:5.0});
+      this.paddingTop:0.0});
 
   @override
   _MD2Painter createBoxPainter([VoidCallback onChanged]) {

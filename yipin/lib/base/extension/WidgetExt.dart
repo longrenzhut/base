@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../provider/MyFutureBuilder.dart';
 
 extension WidgetExt on Widget{
 
@@ -14,6 +12,30 @@ extension WidgetExt on Widget{
       highlightColor: Colors.transparent,
       child: this,
       onTap: onTap,
+    );
+  }
+
+  GestureDetector buildFocusScope(BuildContext context){
+
+    return GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          // 触摸收起键盘
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: this
+    );
+  }
+
+  Ink buildInk({Function() onTap,Decoration decoration,double radius:0.0}){
+
+    return Ink(
+      decoration: decoration,
+      child: InkWell(
+        borderRadius: BorderRadius.all(Radius.circular(radius)),
+        child: this,
+        onTap: onTap,
+      ),
     );
   }
 

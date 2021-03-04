@@ -9,7 +9,7 @@ abstract class ListViewModel<T> extends BaseViewModel{
 
   static const int pageNumFirst = 1;
 
-  static const int pageSize = 10;
+  int get pageSize => 10;
 
   PtrController _refreshController = PtrController(initialRefresh: false);
 
@@ -18,18 +18,20 @@ abstract class ListViewModel<T> extends BaseViewModel{
   /// 当前页码
   int _currentPageNum = pageNumFirst;
 
+  int get page => _currentPageNum;
+
   //数据源
   List<T> list = [];
 
   List<T> data;
 
-  Future refresh() async {
+  Future refresh(Future Function() future) async {
     _currentPageNum = pageNumFirst;
     data = null;
-    var code = await loadData(pageNum: pageNumFirst);
+    var code = await future.call();
     if(code == 1) {
       list.clear();
-      if (data.isEmpty) {
+      if (null == data || data.isEmpty) {
         refreshController.refreshCompleted(resetFooterState: true);
       } else {
         list.addAll(data);
@@ -54,11 +56,12 @@ abstract class ListViewModel<T> extends BaseViewModel{
   }
 
   /// 上拉加载更多
-  Future loadMore() async {
+  Future loadMore(Future Function() future) async {
     data = null;
-    var code = await loadData(pageNum: ++_currentPageNum);
+    ++_currentPageNum;
+    var code = await future.call();
     if(code == 1) {
-      if (data.isEmpty) {
+      if (null == data || data.isEmpty) {
         _currentPageNum--;
         refreshController.loadNoData();
       } else {
@@ -81,8 +84,6 @@ abstract class ListViewModel<T> extends BaseViewModel{
     return code;
   }
 
-  // 加载数据
-  Future loadData({int pageNum});
 
   // @override
   // void dispose() {

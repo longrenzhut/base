@@ -1,5 +1,8 @@
 
+import '../router/RouterHelper.dart';
+import '../utils/LaunchUtils.dart';
 import 'package:flutter/material.dart';
+import 'package:yipin/base/utils/LaunchUtils.dart';
 import '../extension/WidgetExt.dart';
 import '../model/FileModel.dart';
 import '../utils/BaseUtils.dart';
@@ -41,21 +44,26 @@ class _FileWidgetState extends State<FileWidget> {
   Widget build(BuildContext context) {
     url = widget.url??widget.fileInfo?.url;
     var curUrl = BaseUtils.isImageByEnd(url) ? url : "";
-    return LinearWidget(
-      padding: EdgeInsets.only(right: 20),
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        ImageHelper.load(
-          curUrl,
-          placeholder: widget.placeholder,
-          height: widget.height,
-          width: widget.width,
-        ).buildInkWell(() => BaseUtils.launchURL(url)),
-
-        SizedBox(height: 10,),
-        TextView(widget.title,size: 12,color: CstColors.cl_161722,),
-      ],
+    return Container(
+      padding: EdgeInsets.only(right: 8,top: 10),
+      child:   ImageHelper.load(
+        curUrl,
+        placeholder: widget.placeholder,
+        height: widget.height,
+        width: widget.width,
+      ).buildInkWell(() {
+        onClickItem(widget.fileInfo);
+      }),
     );
+  }
+
+  void onClickItem(FileModel model){
+    if(BaseUtils.isImageByEnd(model.url)){
+      // RouterHelper.buildImage(context,[model.url]);
+    }
+    else{
+      LaunchUtils.open(model.url);
+    }
   }
 }
 

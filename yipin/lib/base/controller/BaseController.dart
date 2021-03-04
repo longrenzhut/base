@@ -6,9 +6,10 @@ mixin BaseController{
 
   int index = 0;
 
-  void setIndex(int index){
+  void setIndex(int index,{bool isNotify: true}){
     this.index = index;
-    notifyWidget();
+    if(isNotify)
+    notifyWidget?.call();
   }
 
   Function() notifyWidget;
@@ -17,6 +18,9 @@ mixin BaseController{
     this.notifyWidget = notifyWidget;
   }
 
+  void notifyUI(){
+    notifyWidget?.call();
+  }
 
 
   String _value;
@@ -32,7 +36,7 @@ mixin BaseController{
   }
 
   bool isEmpty(){
-    return BaseUtils.isEmpty(_value);
+    return BaseUtils.isEmpty(value);
   }
 
   void dispose(){

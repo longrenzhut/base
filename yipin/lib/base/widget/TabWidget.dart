@@ -57,7 +57,7 @@ class _TabWidgetState extends State<TabWidget> {
         var index = data.indexOf(model);
         var isCheck = _controller.index == index;
         var color = isCheck ? CstColors.white : CstColors.cl_161722;
-        var bgColor = isCheck ? CstColors.cl_0FB36E : CstColors.white;
+        var bgColor = isCheck ? CstColors.cl_01C6AC : CstColors.white;
 
         var shape = isCheck ? null :
         BeveledRectangleBorder(
@@ -97,10 +97,6 @@ class MyTabController with BaseController{
     this.notifyWidget = notifyWidget;
   }
 
-  void setIndex(int index){
-    this.index = index;
-    notifyWidget();
-  }
 
 
   @override

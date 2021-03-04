@@ -20,7 +20,7 @@ class BaseViewModel with ChangeNotifier{
   }
 
 
-  bool init = false;
+  bool init = true;
 
   bool _disposed = false;
 
@@ -56,7 +56,7 @@ class BaseViewModel with ChangeNotifier{
     rxBusUtils.register<T>(tag,dataCallback);
   }
 
-  void post<T>(int tag,T data){
+  void sendMessage<T>(int tag,T data){
     if(null == rxBusUtils)
       rxBusUtils = RxBusUtils();
     rxBusUtils.post<T>(tag, data);

@@ -1,20 +1,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/BaseUtils.dart';
 import '../widget/EditLayout.dart';
+
+
 
 class EditWidget extends StatelessWidget {
 
   final EdgeInsetsGeometry margin;
   final Axis direction;
-  final MainAxisAlignment mainAxisAlignment;
-  final CrossAxisAlignment crossAxisAlignment;
   final Decoration decoration;
   final Color bgColor;
   final MainAxisSize mainAxisSize;
-  final double height;
-  final double width;
 
   final double size;
   final String text;
@@ -35,18 +34,27 @@ class EditWidget extends StatelessWidget {
   final VoidCallback onEditingComplete;
   final VoidCallback onTap;
   final FocusNode focusNode;
+  final InputBorder focusedBorder;
+  final InputBorder border;
+  final bool isCollapsed;
+  final bool filled;
+  final Color fillColor;
+  final int maxLines;
+  final int minLines;
 
 
-  const EditWidget({Key key, this.margin,
-    this.direction, this.mainAxisAlignment,
-    this.crossAxisAlignment, this.decoration,
+  const EditWidget({Key key,
+    this.margin,
+    this.direction,
+    this.decoration,
     this.bgColor, this.mainAxisSize,
-    this.height, this.width, this.size:12,
+    this.size:14,
     this.color: Colors.black,
     this.hintColor: Colors.grey,
     this.textAlign: TextAlign.start,
     this.readOnly: false,
     this.hint,
+    this.isCollapsed:false,
     this.onChanged,
     this.controller,
     this.stroke: Colors.transparent,
@@ -56,7 +64,10 @@ class EditWidget extends StatelessWidget {
     this.text,
     this.radius: 0.0,
     this.padding: const EdgeInsets.symmetric(vertical: 0.0),
-    this.inputType: InputType.text, this.onSubmitted, this.onEditingComplete, this.onTap
+    this.inputType: InputType.text, this.onSubmitted, this.onEditingComplete, this.onTap,
+    this.focusedBorder, this.border,
+    this.maxLines,
+    this.minLines :1, this.filled:false, this.fillColor
 
   }) : super(key: key);
 
@@ -64,7 +75,6 @@ class EditWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     var _controller = controller;
     if(null == controller){
       _controller = TextEditingController();
@@ -83,9 +93,20 @@ class EditWidget extends StatelessWidget {
       formatters.add(f);
     }
 
+    int NewMaxLength = maxLength;
     if(inputType == InputType.number){
       formatters.add(WhitelistingTextInputFormatter.digitsOnly);
     }
+    else if(inputType == InputType.phone){
+      formatters.add(WhitelistingTextInputFormatter.digitsOnly);
+      NewMaxLength = 11;
+    }
+
+    var cborder = OutlineInputBorder(borderSide: BorderSide(color: stroke),
+        borderRadius:  BorderRadius.all(Radius.circular(radius)));
+
+    var newFocusedBorder = focusedBorder??cborder;
+    var newBorder = border??cborder;
 
     return TextField(
         focusNode: focusNode,
@@ -97,13 +118,16 @@ class EditWidget extends StatelessWidget {
         obscureText: obscureText,
         inputFormatters: formatters,
         controller: _controller,
+        minLines: minLines,
+        maxLines: maxLines,
         style: TextStyle(
-            fontSize: size,
+            height: 1.2,
+            fontSize: size.sp,
             color: color
         ),
         textAlign: textAlign,
         readOnly: readOnly,
-        maxLength: maxLength,
+        maxLength: NewMaxLength,
         toolbarOptions: ToolbarOptions(
             copy: true,
             cut: true,
@@ -112,14 +136,17 @@ class EditWidget extends StatelessWidget {
         ),
         keyboardType: keyboardType,
         decoration: InputDecoration(
+            filled: filled,
+            fillColor: fillColor,
+            isCollapsed: isCollapsed,
             counterText:"",
             contentPadding: padding,
-//            focusedBorder: border,
-//            border: border,
+            focusedBorder: newFocusedBorder,
+            border: newBorder,
             hintText: hint,
-//            enabledBorder: border,
+            enabledBorder: newBorder,
             hintStyle: TextStyle(
-                fontSize: size,
+                fontSize: size.sp,
                 color: hintColor
 
             )

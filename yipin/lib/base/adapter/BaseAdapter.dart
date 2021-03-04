@@ -10,6 +10,8 @@ class BaseAdapter<T>{
 
   bool isClick = true;
   double divider;
+
+  int count;
   Color dividerColor = CstColors.cl_A5AAB4;
 
   Function(BuildContext context,int index,T model) onItemClick;
@@ -21,6 +23,7 @@ class BaseAdapter<T>{
     this.isClick = true,
     this.onItemClick,
     this.builder,
+    this.count,
     this.header,
     this.divider = 0,
     this.dividerColor,
@@ -46,8 +49,8 @@ class BaseAdapter<T>{
   }
 
   int getItemCount(){
-    int count = (null == data ? 0 : data.length) + getHeaderCount();
-    return count;
+    int counts = (null == data ? 0 : data.length) + getHeaderCount();
+    return count??counts;
   }
 
   Widget onBindViewHolderHeader(BuildContext context, int index){
@@ -60,8 +63,20 @@ class BaseAdapter<T>{
       return onBindViewHolderHeader(context,index);
     }
 
-    T model = data[index - getHeaderCount()];
-    return onBindViewHolder(context,index,model);
+    var newIndex = index - getHeaderCount();
+    T model = newIndex < (data?.length??0) ? data[newIndex] : null;
+
+    var function = null == builder ? onBindViewHolder(context,index,model) : builder(context,index,model);
+
+    return !isClick? function :InkWell(
+      child: function,
+      onTap: (){
+        if(null != onItemClick)
+          onItemClick(context,index,model);
+        else
+          onItemClicked(context,index,model);
+      },
+    );
 
 
   }
@@ -74,15 +89,7 @@ class BaseAdapter<T>{
 //      ),
 
   Widget onBindViewHolder(BuildContext context,int index, T model){
-    return !isClick? builder(context,index,model) :InkWell(
-      child: builder(context,index,model),
-      onTap: (){
-        if(null != onItemClick)
-          onItemClick(context,index,model);
-        else
-          onItemClicked(context,index,model);
-      },
-    );
+    return null;
   }
   void onItemClicked(BuildContext context, int index,T model){
 

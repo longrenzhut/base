@@ -1,3 +1,4 @@
+
 import '../utils/ImageHelper.dart';
 import '../utils/CstColors.dart';
 import '../widget/LinearWidget.dart';
@@ -83,11 +84,21 @@ class ViewStateFailedWidget extends StatelessWidget {
 
 /// 页面无数据
 class ViewStateEmptyWidget extends StatelessWidget {
+
+  final String title;
+
+  const ViewStateEmptyWidget({Key key, this.title}) : super(key: key);
+
+
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        child: ImageHelper.buildImage("ic_nodata.png",width: 108,height: 120,type: 1),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ImageHelper.buildImage("ic_nodata.png",width: 80,height: 70,type: 1),
+          TextView(title??"暂无数据",size: 14,color: Colors.black,)
+        ],
       ),
     );
   }
