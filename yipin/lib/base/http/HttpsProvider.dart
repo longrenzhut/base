@@ -49,12 +49,12 @@ class HttpUtils {
   static HttpUtils _inst;
 
   HttpUtils._internal() {
-    _dio = new Dio(BaseOptions(
+    _dio = new Dio(
+        BaseOptions(
 //      baseUrl: getPhpUrl(),
       connectTimeout: CONNECT_TIMEOUT,
       receiveTimeout: CONNECT_TIMEOUT,
       sendTimeout: CONNECT_TIMEOUT,
-      // 5s
       contentType: Headers.jsonContentType,
       responseType: ResponseType.json,
     ));

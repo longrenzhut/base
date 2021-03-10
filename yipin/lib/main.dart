@@ -17,7 +17,7 @@ void main() async{
   runApp(ScreenUtilInit(
     designSize: Size(360, 690),
     allowFontScaling: false,
-    child: MyApp(),
+    builder: ()=> MyApp(),
   ));
 
   // Android状态栏透明 splash为白色,所以调整状态栏文字为黑色

@@ -15,7 +15,16 @@ abstract class BasePageState<T extends StatefulWidget,K extends BaseViewModel> e
   K getViewModel();
 
 
+
   bool autoDispose() => true;
+
+
+  @override
+  void initState() {
+    viewModel = getViewModel();
+    super.initState();
+  }
+
 
   @override
   Widget getContentWidget(BuildContext context) {

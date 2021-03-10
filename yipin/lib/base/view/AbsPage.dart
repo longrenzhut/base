@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import '../view/HeaderWidget.dart';
 import '../rxbus/rx.dart';
 import '../view/BaseMixin.dart';
 
@@ -25,16 +24,13 @@ abstract class AbsPageState<T extends StatefulWidget> extends State<T> with Base
     super.initState();
   }
 
-  HeaderController headerCtr;
 
   @override
   Widget getAppBar(BuildContext context) {
     if(!isUseHeader)
       return null;
 
-    if(null == headerCtr)
-      headerCtr = HeaderController();
-    return HeaderWidget(controller: headerCtr,);
+    return null;
   }
 
   Widget getContentWidget(BuildContext context){

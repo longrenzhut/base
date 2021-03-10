@@ -29,7 +29,7 @@ class PtrListWidget extends PtrWidget {
     this.viewModel,
     this.initFuture:true,
     this.adapter,
-    this.shrinkWrap,
+    this.shrinkWrap:false,
     this.enablePullUp:true,
     this.enablePullDown:true
   }) : super(key: key,

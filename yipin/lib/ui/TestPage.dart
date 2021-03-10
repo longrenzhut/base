@@ -1,8 +1,6 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:open_settings/open_settings.dart';
-import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 import 'package:yipin/base/utils/ToastUtil.dart';
 import 'package:yipin/base/widget/tab/TabBarWidget.dart';
 import 'package:yipin/base/widget/tab/TabPageWidget.dart';
@@ -62,16 +60,6 @@ class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
         WidgetUtils.buildSliverPadding(
             padding: EdgeInsets.all(20.0),
             child: Text("charts").buildInkWell(() =>   RouterHelper.build(context, RouteSettings(name: Routes.test,arguments: {"type": 2})))
-        ),
-        WidgetUtils.buildSliverPadding(
-            child: AutoSizeText(
-              'A really long StringA really long StringA really long StringA really long StringA really long StringA really long String',
-              style: TextStyle(fontSize: 40),
-              minFontSize: 10,
-              stepGranularity: 10,
-              maxLines: 4,
-              overflow: TextOverflow.ellipsis,
-            )
         ),
         WidgetUtils.buildSliverPadding(
             padding: EdgeInsets.all(20.0),
@@ -179,6 +167,7 @@ class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
       ],
       viewModel: viewModel,
       itemExtent: 100,
+      future: ()=>viewModel.loadData(),
       adapter: BaseAdapter<String>(
           data: viewModel.list,
           builder: (context,index,model){

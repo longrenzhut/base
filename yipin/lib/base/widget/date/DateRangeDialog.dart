@@ -9,11 +9,8 @@ import '../../../base/widget/LinearWidget.dart';
 import '../../../base/widget/TextView.dart';
 import '../../../common/MyColors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_common_utils/date_util.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../base/view/BaseWidget.dart';
 import '../../../base/extension/WidgetExt.dart';
-import '../../../base/extension/ListExt.dart';
 
 class DateRangeDialog extends StatefulWidget {
 
@@ -106,7 +103,7 @@ class _DateRangeDialogState extends BaseWidgetState<DateRangeDialog,DateRangeCon
                   List<int> yearMonth = controller.getYearMonthByIndex(index);
 
                   var fistDay = DateTime(yearMonth[0],yearMonth[1],1);
-                  var lastDay = DateUtil.lastDayOfMonth(fistDay);
+                  var lastDay = DateUtils.lastDayOfMonth(fistDay);
                   var diff = fistDay.weekday == 7 ? 0 : fistDay.weekday - 1;
                   List<DateTime> data = List.generate(lastDay.day + diff, (index) {
                     if(index <= diff)

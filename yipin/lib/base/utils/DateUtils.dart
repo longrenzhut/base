@@ -1,31 +1,27 @@
-import 'package:flutter_common_utils/date_util.dart';
-/*
- * 关于时间工具
- */
 class DateUtils {
-  // 工厂模式
-  factory DateUtils() => _getInstance();
-
-  static DateUtils get instance => _getInstance();
-  static DateUtils _instance;
-
-  DateUtils._internal() {
-    // 初始化
-  }
-
-  static DateUtils _getInstance() {
-    if (_instance == null) {
-      _instance = new DateUtils._internal();
-    }
-    return _instance;
-  }
+  // // 工厂模式
+  // factory DateUtils() => _getInstance();
+  //
+  // static DateUtils get instance => _getInstance();
+  // static DateUtils _instance;
+  //
+  // DateUtils._internal() {
+  //   // 初始化
+  // }
+  //
+  // static DateUtils _getInstance() {
+  //   if (_instance == null) {
+  //     _instance = new DateUtils._internal();
+  //   }
+  //   return _instance;
+  // }
 
   ///将时间日期格式转化为时间戳
   ///2018年12月11日
   ///2019-12-11
   ///2018年11月15 11:14分89
   ///结果是毫秒
-  int getTimeStap({formartData: String}) {
+  static int getTimeStap({formartData: String}) {
     var result = formartData.substring(0, 4) + "-" + formartData.substring(5, 7) + "-" + formartData.substring(8, 10);
     if (formartData.toString().length>=13&&formartData.substring(10, 13) != null) {
       result += "" + formartData.substring(10, 13);
@@ -42,32 +38,41 @@ class DateUtils {
   }
 
 
-  String getChangeTime(String dateStr){
+  static String getChangeTime(String dateStr){
     var dates = dateStr.split(" ");
     if(dates.length != 2)
       return dateStr;
     DateTime dateTime = DateTime.tryParse(dateStr);
-    if(DateUtil.isToday(dateTime.microsecond)){
+
+
+    if(isToday(dateTime)){
       return "今天 ${dates[1]}";
     }
-    if(DateUtil.isYesterday(dateTime,DateTime.now())){
+    if(isYesterday(dateTime)){
       return "昨天 ${dates[1]}";
     }
     return dateStr;
   }
 
-  String getYearMonthDay(String dateStr){
+  static String getYearMonthDay(String dateStr){
     var dates = dateStr.split(" ");
     if(dates.length != 2)
       return dateStr;
     return dates[0];
   }
 
-  /// year is today.
   /// 是否是今天.
   static bool isToday(DateTime date, {bool isUtc = false}) {
     if (date == null) return false;
     DateTime old = date;
+    DateTime now = isUtc ? DateTime.now().toUtc() : DateTime.now().toLocal();
+    return old.year == now.year && old.month == now.month && old.day == now.day;
+  }
+
+  /// 是否是昨天.
+  static bool isYesterday(DateTime date, {bool isUtc = false}) {
+    if (date == null) return false;
+    DateTime old = date.add(Duration(days: 1));
     DateTime now = isUtc ? DateTime.now().toUtc() : DateTime.now().toLocal();
     return old.year == now.year && old.month == now.month && old.day == now.day;
   }
@@ -111,8 +116,4 @@ class DateUtils {
     }
     return '周' + w.toString();
   }
-}
-class TimeData{
-  String dataTime;
-  int week;
 }

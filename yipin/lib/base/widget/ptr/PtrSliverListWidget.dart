@@ -22,7 +22,6 @@ import '../../utils/WidgetUtils.dart';
 class PtrSliverListWidget extends PtrWidget {
 
   final EdgeInsetsGeometry padding;
-  final bool shrinkWrap = false;
   final BaseAdapter adapter;
   final double itemExtent;
   final ListViewModel viewModel;
@@ -33,14 +32,14 @@ class PtrSliverListWidget extends PtrWidget {
 
 
   PtrSliverListWidget({Key key,
-    this.initFuture,
+    this.initFuture:true,
     this.padding,
     this.itemExtent,
     this.viewModel,
     this.adapter,
     this.slivers,
     this.enablePullUp:true,
-    this.future
+    this.future,
   }) : super(key: key,
     initFuture: initFuture,
     enablePullUp: enablePullUp,
@@ -57,7 +56,6 @@ class PtrSliverListWidget extends PtrWidget {
       }
       return CustomScrollView(
         slivers: [
-          SizedBox.shrink(),
           ...slivers,
           WidgetUtils.buildSliverList(
               itemExtent: itemExtent,
