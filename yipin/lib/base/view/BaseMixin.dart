@@ -15,6 +15,10 @@ mixin BaseMixin {
     return null;
   }
 
+  Widget getBottomNavigationBar(BuildContext context) {
+    return null;
+  }
+
 
   Map _argumentsMap;
   Map argumentOf(BuildContext context) {
@@ -23,37 +27,14 @@ mixin BaseMixin {
     if(null == _argumentsMap){
       _argumentsMap = {};
     }
-    if(_argumentsMap.isNotEmpty)
+    if(_argumentsMap.length > 0)
       print("页面参数传递： " + _argumentsMap.toString());
     return _argumentsMap;
   }
 
-  // Map argumentOf(BuildContext context) {
-  //   var argumentMap = ModalRoute.of(context).settings.arguments;
-  //   return argumentMap;
-  // }
-
-
-
-  //  show({Future<dynamic> reqCallback}){
-//    BotToast.showCustomNotification(
-//      toastBuilder: (value){
-//        reqCallback.then((t) => value);
-//
-//      return NetLoadingDialog(
-//        outsideDismiss: false,
-//      );
-//    },
-//    );
-//  }
-//
-    T providerOf<T>(BuildContext context){
+  T providerOf<T>(BuildContext context){
     return Provider.of<T>(context,listen: false);
   }
-
-
-
-
 
 
 

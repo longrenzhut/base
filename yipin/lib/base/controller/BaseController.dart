@@ -9,17 +9,17 @@ mixin BaseController{
   void setIndex(int index,{bool isNotify: true}){
     this.index = index;
     if(isNotify)
-    notifyWidget?.call();
+    _notifyWidget?.call();
   }
 
-  Function() notifyWidget;
+  Function() _notifyWidget;
 
-  void setNotifyWidget(Function() notifyWidget){
-    this.notifyWidget = notifyWidget;
+  void setNotifyWidget(Function() _notifyWidget){
+    this._notifyWidget = _notifyWidget;
   }
 
   void notifyUI(){
-    notifyWidget?.call();
+    _notifyWidget?.call();
   }
 
 
@@ -40,7 +40,7 @@ mixin BaseController{
   }
 
   void dispose(){
-    notifyWidget = null;
+    _notifyWidget = null;
   }
 
 }

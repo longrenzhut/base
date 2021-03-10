@@ -8,60 +8,55 @@ import 'PtrWidget.dart';
 import '../../adapter/BaseAdapter.dart';
 import '../../utils/WidgetUtils.dart';
 
-class PtrListWidget extends StatelessWidget {
+class PtrListWidget extends PtrWidget {
 
 
   final EdgeInsetsGeometry padding;
-  final bool shrinkWrap = false;
+  final bool shrinkWrap;
   final BaseAdapter adapter;
   final double itemExtent;
   final ListViewModel viewModel;
   final bool enablePullUp;
   final Future Function() future;
   final bool enablePullDown;
-  final bool init;
+  final bool initFuture;
 
 
-  const PtrListWidget({Key key,
+  PtrListWidget({Key key,
     this.padding,
     this.itemExtent,
     this.future,
     this.viewModel,
-    this.init:true,
+    this.initFuture:true,
     this.adapter,
+    this.shrinkWrap,
     this.enablePullUp:true,
     this.enablePullDown:true
-  }
-      ) : super(key: key);
+  }) : super(key: key,
+    initFuture: initFuture,
+    enablePullDown: enablePullDown,
+    enablePullUp: enablePullUp,
+    controller: viewModel.ptrCtr,
+    onRefresh: (){
+      return viewModel.refresh(future);
+    },
+    onLoading: (){
+      return viewModel.loadMore(future);
+    },
+    builder: (context){
+      if(viewModel.list.isEmpty){
+        return ViewStateEmptyWidget();
+      }
+      return WidgetUtils.buildList(
+          adapter: adapter,
+          padding:padding,
+          itemExtent: itemExtent,
+          shrinkWrap: shrinkWrap
+      );
+    },
 
-  @override
-  Widget build(BuildContext context) {
+  );
 
-    return PtrWidget(
-      init: init,
-      enablePullDown: enablePullDown,
-      enablePullUp: enablePullUp,
-      controller: viewModel.refreshController,
-      onRefresh: (){
-       return viewModel.refresh(future);
-      },
-      onLoading: (){
-        return viewModel.loadMore(future);
-      },
-      builder: (context){
-        if(viewModel.list.isEmpty){
-          return ViewStateEmptyWidget();
-        }
-        return  WidgetUtils.buildList(
-            adapter: adapter,
-            padding:padding,
-            itemExtent: itemExtent,
-            shrinkWrap: shrinkWrap
-        );
-      },
-
-    );
-  }
 }
 
 

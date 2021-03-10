@@ -8,7 +8,18 @@ import '../../adapter/BaseAdapter.dart';
 import '../../utils/WidgetUtils.dart';
 
 
-class PtrSliverListWidget extends StatelessWidget {
+
+
+
+import 'package:flutter/material.dart';
+import '../../provider/StateWidget.dart';
+import '../../provider/ListViewModel.dart';
+import 'PtrWidget.dart';
+
+import '../../adapter/BaseAdapter.dart';
+import '../../utils/WidgetUtils.dart';
+
+class PtrSliverListWidget extends PtrWidget {
 
   final EdgeInsetsGeometry padding;
   final bool shrinkWrap = false;
@@ -18,9 +29,11 @@ class PtrSliverListWidget extends StatelessWidget {
   final bool enablePullUp;
   final List<Widget> slivers;
   final Future Function() future;
+  final bool initFuture;
 
 
-  const PtrSliverListWidget({Key key,
+  PtrSliverListWidget({Key key,
+    this.initFuture,
     this.padding,
     this.itemExtent,
     this.viewModel,
@@ -28,41 +41,33 @@ class PtrSliverListWidget extends StatelessWidget {
     this.slivers,
     this.enablePullUp:true,
     this.future
-  }
-      ) : super(key: key);
+  }) : super(key: key,
+    initFuture: initFuture,
+    enablePullUp: enablePullUp,
+    controller: viewModel.ptrCtr,
+    onRefresh: (){
+      return viewModel.refresh(future);
+    },
+    onLoading: (){
+      return viewModel.loadMore(future);
+    },
+    builder: (context){
+      if(viewModel.list.isEmpty){
+        return ViewStateEmptyWidget();
+      }
+      return CustomScrollView(
+        slivers: [
+          SizedBox.shrink(),
+          ...slivers,
+          WidgetUtils.buildSliverList(
+              itemExtent: itemExtent,
+              adapter: adapter
+          )
+        ],
+      );
+    },
 
-  @override
-  Widget build(BuildContext context) {
+  );
 
-    return PtrWidget(
-      enablePullUp: enablePullUp,
-      controller: viewModel.refreshController,
-      onRefresh: (){
-        return viewModel.refresh(future);
-      },
-      onLoading: (){
-        return viewModel.loadMore(future);
-      },
-      builder: (context){
-        if(viewModel.list.isEmpty){
-          return ViewStateEmptyWidget();
-        }
-        return CustomScrollView(
-          slivers: List.generate((slivers?.length??0) + 1, (index){
-            if(index == (slivers?.length??0))
-              return child;
-            return slivers[index];
-          }).toList(),
-        );
-      },
-
-    );
-  }
-
-  Widget get child{
-    return WidgetUtils.buildSliverList(
-        itemExtent: itemExtent,
-        adapter: adapter
-    );
-  }
 }
+

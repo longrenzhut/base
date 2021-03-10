@@ -143,7 +143,7 @@ class DateController  with BaseController{
     this._date = value;
     super.setValue(value);
     isSelected = !BaseUtils.isEmpty(value);
-    notifyWidget();
+    notifyUI();
   }
 
 

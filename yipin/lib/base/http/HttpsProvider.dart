@@ -175,7 +175,7 @@ class HttpUtils {
     }
 
 //    onSendProgress: (int sent, int total) {
-////          print("上传进度：${sent / total * 100} %"); //取精度，如：56.45%
+////          print("上传进度：${sent / total * 100} %"); //取精度，
 //    },);
 //    return false;
   }

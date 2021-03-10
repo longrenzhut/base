@@ -1,4 +1,6 @@
 
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+
 import '../widget/ptr/PtrWidget.dart';
 
 import 'BaseViewModel.dart';
@@ -11,9 +13,15 @@ abstract class ListViewModel<T> extends BaseViewModel{
 
   int get pageSize => 10;
 
-  PtrController _refreshController = PtrController(initialRefresh: false);
 
-  PtrController get refreshController => _refreshController;
+   var ptrCtr = PtrController(initialRefresh: false);
+  RefreshController _refreshController;
+  RefreshController get refreshController => _refreshController;
+
+  ListViewModel(){
+    _refreshController = ptrCtr.refreshCtr;
+  }
+
 
   /// 当前页码
   int _currentPageNum = pageNumFirst;
@@ -46,7 +54,7 @@ abstract class ListViewModel<T> extends BaseViewModel{
       }
     }
     else if(code == -1){
-      if (_refreshController.init) list.clear();
+      if (ptrCtr.init) list.clear();
       refreshController.refreshFailed();
     }
     else{

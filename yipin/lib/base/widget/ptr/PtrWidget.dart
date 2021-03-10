@@ -7,12 +7,17 @@ import '../../provider/StateWidget.dart';
 
 
 
-class PtrWidget extends StatefulWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../base/view/BaseWidget.dart';
+import '../../../base/extension/WidgetExt.dart';
+import '../../../base/extension/ListExt.dart';
 
+class PtrWidget extends StatefulWidget {
   final bool enablePullUp;
   final bool enablePullDown;
   final bool enableTwoLevel;
-  final bool init;
+  final bool initFuture;
   final Future Function() onRefresh;
   final Future Function() onLoading;
   final Widget Function(BuildContext context) builder;
@@ -26,36 +31,35 @@ class PtrWidget extends StatefulWidget {
     this.enablePullUp:false,
     this.enablePullDown:true,
     this.enableTwoLevel:false,
-    this.init:true,
+    this.initFuture:true,
     this.builder
   }
       ) : super(key: key);
+
+
+
 
 
   @override
   _PtrWidgetState createState() => _PtrWidgetState();
 }
 
-class _PtrWidgetState extends State<PtrWidget> {
+class _PtrWidgetState extends BaseWidgetState<PtrWidget,PtrController> {
 
-   PtrController controller;
+  @override
+  PtrController getController() =>  widget.controller??PtrController();
+
 
   @override
   void initState() {
-    controller = widget.controller??PtrController();
-    controller?.setNotifyWidget((){
-      if(mounted){
-        setState(() {
-
-        });
-      }
-    });
-    if(widget.init)
-    initData();
     super.initState();
+
+    controller.setRequestFun(request);
+    if(widget.initFuture)
+      controller.request();
   }
 
-  void initData() async{
+  void request() async{
     controller.init = true;
     var code = await widget.onRefresh?.call();
     controller.state = code;
@@ -71,7 +75,7 @@ class _PtrWidgetState extends State<PtrWidget> {
       // primary:true,
       enableTwoLevel:widget.enableTwoLevel,
       enablePullUp: widget.enablePullUp,
-      controller: controller,
+      controller: controller.refreshCtr,
       onRefresh: () async{
         controller.init = false;
         var code = await widget.onRefresh?.call();
@@ -94,13 +98,13 @@ class _PtrWidgetState extends State<PtrWidget> {
       case 0:
         return ViewStateBusyWidget();
       case 1:{
-          controller.init = false;
-          return widget.builder(context);
-        }
+        controller.init = false;
+        return widget.builder(context);
+      }
       case -1:
-        return ViewStateErrorWidget(onPressed:initData);
+        return ViewStateErrorWidget(onPressed:request);
     }
-    return ViewStateFailedWidget(onPressed: initData);
+    return ViewStateFailedWidget(onPressed: request);
 
   }
 
@@ -111,11 +115,30 @@ class _PtrWidgetState extends State<PtrWidget> {
   }
 }
 
-class PtrController extends RefreshController with BaseController{
+
+class PtrController extends BaseWidgetController{
+
+
+  Function() _requestFun;
+
+  void setRequestFun(Function() _requestFun){
+    this._requestFun = _requestFun;
+  }
+
+  void request(){
+    _requestFun?.call();
+  }
+
+
+
+  RefreshController refreshCtr;
 
   bool init = true;
+  final bool initialRefresh;
 
-  PtrController({bool initialRefresh: false}):super(initialRefresh: initialRefresh);
+  PtrController({this.initialRefresh:false}) {
+    refreshCtr = RefreshController(initialRefresh: initialRefresh);
+  }
 
   static final int waiting = 0;
   static final int done = 1;
@@ -127,7 +150,12 @@ class PtrController extends RefreshController with BaseController{
 
   set state(int value) {
     _state = value;
-    notifyWidget?.call();
+    notifyUI();
+  }
+
+  @override
+  void dispose() {
+    refreshCtr?.dispose();
+    super.dispose();
   }
 }
-

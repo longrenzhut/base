@@ -1,77 +1,39 @@
 
 
 
-import '../../base/router/RouterHelper.dart';
-import '../../base/utils/ImageHelper.dart';
-import '../../base/utils/LaunchUtils.dart';
-import '../../base/widget/TextView.dart';
-import '../../common/MyColors.dart';
 import 'package:flutter/material.dart';
 import 'package:lifecycle/lifecycle.dart';
-import '../provider/BaseViewModel.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/CstColors.dart';
-import '../view/BaseMixin.dart';
-import '../../base/extension/WidgetExt.dart';
+import '../provider/BaseViewModel.dart';
+import 'AbsPage.dart';
 
-abstract class BasePageState<T extends StatefulWidget,K extends BaseViewModel> extends State<T> with BaseMixin ,AutomaticKeepAliveClientMixin{
-
+abstract class BasePageState<T extends StatefulWidget,K extends BaseViewModel> extends AbsPageState<T>{
 
   K viewModel;
 
-//  @override
-  Color get bgColor => null;
-  bool get isScaffold => true;
+  K getViewModel();
 
-  bool autoDispose(){
-    return true;
-  }
 
+  bool autoDispose() => true;
 
   @override
-  void initState() {
-    viewModel = getViewModel();
-    super.initState();
-  }
+  Widget getContentWidget(BuildContext context) {
 
 
-  Map get arguments => argumentOf(context);
-
-
-  var isInit = true;
-
-  void initValue(){
-  }
-
-
-  @override
-  Widget build(BuildContext context) {
-    if(isInit) {
-      initValue();
-      isInit = false;
-    }
-
-    var _provider = viewModel != null ? ChangeNotifierProvider<K>.value(
+    var changeNotifierWidget = viewModel != null ? ChangeNotifierProvider<K>.value(
       value: viewModel,
       child: Consumer<K>(
         builder: (context,model,child){
-          return getView(context);
+
+          return super.getContentWidget(context);
         },
       ),
-    ):  getView(context);
+    ):  super.getContentWidget(context);
 
-
-    if(!isScaffold)
-      return _provider;
-
-    return Scaffold(
-      appBar: getAppBar(context),
-      backgroundColor: bgColor,
-      body: _provider,
-      bottomNavigationBar: getBottomNavigationBar(context),
-    );
+    return changeNotifierWidget;
   }
+
 
 
   @override
@@ -81,33 +43,6 @@ abstract class BasePageState<T extends StatefulWidget,K extends BaseViewModel> e
     super.dispose();
   }
 
-
-  K getViewModel();
-
-
-
-  Widget getAppBar(BuildContext context) {
-    return null;
-  }
-
-
-  @override
-  Widget getBottomNavigationBar(BuildContext context) {
-    return null;
-  }
-
-
-  @override
-  bool get wantKeepAlive => false;
-
-
-  void registerRxBus<T>(int tag,Function(T data) dataCallback){
-    viewModel?.register<T>(tag,dataCallback);
-  }
-
-  void sendMessage<T>(int tag,T data){
-    viewModel?.sendMessage<T>(tag,data);
-  }
 }
 
 
