@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import '../controller/BaseController.dart';
 import '../controller/BaseController.dart';
-import '../provider/ProviderWidget.dart';
+import '../base/common/ProviderWidget.dart';
 
 class MyPageView extends StatelessWidget {
 

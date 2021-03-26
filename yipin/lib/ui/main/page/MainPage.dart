@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:yipin/base/base/page/BasePage.dart';
 import '../../../base/widget/MyIndexStack.dart';
 import '../../../base/widget/tab/BottomBarWidget.dart';
-import '../../../base/view/BasePage.dart';
 import '../../../base/extension/WidgetExt.dart';
 import '../../../base/extension/ListExt.dart';
 import '../../../ui/main/viewmodel/MainVM.dart';

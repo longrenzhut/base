@@ -1,11 +1,11 @@
 
-import '../../base/adapter/BaseAdapter.dart';
+import '../base/adapter/BaseAdapter.dart';
 import '../../base/model/FileModel.dart';
 import '../../base/utils/ImageHelper.dart';
 import '../../base/utils/WidgetUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../base/view/BaseWidget.dart';
+import '../base/widget/BaseWidget.dart';
 import '../../base/extension/WidgetExt.dart';
 import '../../base/extension/ListExt.dart';
 

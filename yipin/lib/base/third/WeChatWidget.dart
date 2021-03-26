@@ -4,9 +4,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:fluwx/fluwx.dart' as fluwx;
+import '../base/widget/BaseWidget.dart';
 import '../utils/ImageHelper.dart';
 import '../utils/ToastUtil.dart';
-import '../view/BaseWidget.dart';
+
 
 class WeChatWidget extends StatefulWidget {
 

@@ -88,7 +88,7 @@ dependencies:
   #    级联选择器
   #  cascade_picker: ^0.0.4+1
 
-  webview_flutter: ^2.0.2
+#  webview_flutter: ^2.0.2
   #  web_browser:
 
 #  universal_html:

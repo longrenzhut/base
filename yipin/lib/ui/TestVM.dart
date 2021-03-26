@@ -1,4 +1,5 @@
-import '../base/provider/ListViewModel.dart';
+
+import 'package:yipin/base/base/viewmodel/ListViewModel.dart';
 
 class TestVM extends ListViewModel<String>{
 

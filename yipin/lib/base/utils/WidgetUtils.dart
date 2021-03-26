@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../adapter/BaseAdapter.dart';
+import '../base/adapter/BaseAdapter.dart';
 import '../delegate/MySliverHeaderDelegate.dart';
 
 

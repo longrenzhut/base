@@ -1,4 +1,6 @@
 
+import '../../base/widget/BaseWidget.dart';
+
 import '../../../base/utils/ImageHelper.dart';
 import '../../../base/widget/LinearWidget.dart';
 import '../../../base/widget/SuperTextView.dart';
@@ -6,7 +8,6 @@ import '../../../base/widget/TextView.dart';
 import '../../../common/MyColors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../base/view/BaseWidget.dart';
 import '../../../base/extension/WidgetExt.dart';
 import '../../../base/extension/ListExt.dart';
 

@@ -1,5 +1,5 @@
 
-import '../../../base/adapter/BaseAdapter.dart';
+import '../../base/adapter/BaseAdapter.dart';
 import '../../../base/painting/MyDecoration.dart';
 import '../../../base/utils/WidgetUtils.dart';
 import '../../../base/widget/LinearWidget.dart';
@@ -9,7 +9,7 @@ import '../../../base/widget/TextView.dart';
 import '../../../common/MyColors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../base/view/BaseWidget.dart';
+import '../../base/widget/BaseWidget.dart';
 import '../../../base/extension/WidgetExt.dart';
 import '../../../base/extension/ListExt.dart';
 

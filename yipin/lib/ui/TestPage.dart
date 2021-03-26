@@ -1,6 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:open_settings/open_settings.dart';
+import 'package:yipin/base/base/adapter/BaseAdapter.dart';
+import 'package:yipin/base/base/common/PtrSliverListWidget.dart';
+import 'package:yipin/base/base/page/BasePage.dart';
 import 'package:yipin/base/utils/ToastUtil.dart';
 import 'package:yipin/base/widget/tab/TabBarWidget.dart';
 import 'package:yipin/base/widget/tab/TabPageWidget.dart';
@@ -9,13 +12,10 @@ import 'package:yipin/ui/main/page/MainPage.dart';
 import '../base/router/routes.dart';
 import '../base/router/RouterHelper.dart';
 
-import '../base/adapter/BaseAdapter.dart';
 import '../base/extension/WidgetExt.dart';
 import '../base/utils/ImageHelper.dart';
 import '../base/utils/WidgetUtils.dart';
-import '../base/view/BasePage.dart';
 import '../base/widget/AnimWidget.dart';
-import '../base/widget/ptr/PtrSliverListWidget.dart';
 import 'TestVM.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 

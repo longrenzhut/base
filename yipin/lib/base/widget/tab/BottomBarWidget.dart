@@ -4,7 +4,7 @@ import '../../../base/utils/ImageHelper.dart';
 import '../../../base/utils/CstColors.dart';
 import '../../../base/widget/TextView.dart';
 import '../../../base/model/ItemModel.dart';
-import '../../../base/view/BaseWidget.dart';
+import '../../base/widget/BaseWidget.dart';
 
 class BottomBarWidget extends StatefulWidget {
 

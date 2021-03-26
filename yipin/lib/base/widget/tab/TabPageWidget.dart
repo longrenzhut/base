@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../base/view/BaseWidget.dart';
+import '../../base/widget/BaseWidget.dart';
 import 'BarPreferredSizeWidget.dart';
 import 'TabBarWidget.dart';
 
