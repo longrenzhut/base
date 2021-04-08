@@ -33,6 +33,8 @@ class MyAppBar extends AppBar{
         WidgetUtils.buildProvider<AppBarController>(
             model: controller,
             builder: (context,model){
+              if(!model.loadOk)
+                return SizedBox.shrink();
               return Row(
                 children: [
                   ...controller.children??[],
@@ -65,9 +67,15 @@ class AppBarController with ChangeNotifier{
 
   List<Widget> children;
 
-  AppBarController({this.title, this.ivLeftIcon:"ic_back.png",
-    this.leftFunc, this.bgColor, this.tvRightText:"", this.rightFun, this.children});
 
+  bool loadOk = false;//是否加载完成
+
+  AppBarController({this.leftFunc});
+
+
+  void notifyUI(){
+    notifyListeners();
+  }
 
 
   void setTitle(String title,{Color bgColor:Colors.white,

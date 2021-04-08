@@ -1,3 +1,4 @@
+import 'package:base/base/common/MyAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:base/base/common/PtrWidget.dart';
@@ -5,6 +6,14 @@ import 'package:base/base/common/StateWidget.dart';
 import 'ViewModelMixin.dart';
 
 class BaseViewModel with ChangeNotifier,ViewModelMixin{
+
+
+  AppBarController _controller;
+
+  void setAppBarController(AppBarController controller){
+    this._controller = controller;
+  }
+
 
   PtrController _ptrController;
 
@@ -55,9 +64,21 @@ class BaseViewModel with ChangeNotifier,ViewModelMixin{
     super.dispose();
   }
 
+  //主要是头部按钮隐藏
+  void setBusy(){
+    _controller?.loadOk = false;
+
+  }
+
+  //网络加载完成
+  void loadOk(){
+    _controller?.loadOk = true;
+    _controller?.notifyUI();
+  }
 
   Widget get selfWidget => null;
   Widget get errorWidget => null;
+
 
   Widget stateWidget({VoidCallback onPressed,int state}){
 

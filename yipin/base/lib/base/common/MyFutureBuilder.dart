@@ -2,7 +2,6 @@
 import 'package:base/base/viewmodel/BaseViewModel.dart';
 import 'package:flutter/material.dart';
 
-import 'StateWidget.dart';
 
 
 class MyFutureBuilder<T> extends StatefulWidget {
@@ -32,6 +31,7 @@ class _MyFutureBuilderState<T> extends State<MyFutureBuilder<T>> {
   @override
   void initState() {
     super.initState();
+    widget.model.setBusy();
     _snapshot = AsyncSnapshot<T>.nothing();
     _subscribe();
   }
@@ -58,6 +58,7 @@ class _MyFutureBuilderState<T> extends State<MyFutureBuilder<T>> {
 
     if(_snapshot.connectionState == ConnectionState.done && _snapshot.data == 1){
       init = false;
+      widget.model.loadOk();
       return widget.builder(context);
     }
     else{

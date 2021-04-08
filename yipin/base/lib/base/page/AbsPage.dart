@@ -1,5 +1,6 @@
 
 import 'package:base/base/common/MyAppBar.dart';
+import 'package:base/router/RouterHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:base/rxbus/rx.dart';
 import 'BaseMixin.dart';
@@ -25,15 +26,19 @@ abstract class AbsPageState<T extends StatefulWidget> extends State<T> with Base
 
   AppBarController get controller{
     if(null == _controller)
-      _controller = AppBarController();
+      _controller = AppBarController(leftFunc:onIvLeftClick);
     return _controller;
+  }
+
+
+  void onIvLeftClick(){
+    RouterHelper.pop(context);
   }
 
   @override
   Widget getAppBar(BuildContext context) {
     if(!isUseHeader)
       return null;
-
     return MyAppBar(controller: controller,);
   }
 

@@ -40,7 +40,7 @@ class _LoginPageState extends BasePageState<LoginPage, LoginVM> {
         )
       ],
       viewModel: viewModel,
-      future: viewModel.loadData,
+      future: ()=>viewModel.loadData(),
       itemExtent: 100,
       adapter: BaseAdapter<String>(
           data: viewModel.list,

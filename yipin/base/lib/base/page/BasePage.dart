@@ -22,6 +22,9 @@ abstract class BasePageState<T extends StatefulWidget,K extends BaseViewModel> e
   @override
   void initState() {
     viewModel = getViewModel();
+
+    if(isUseHeader)
+      viewModel.setAppBarController(controller);
     viewModel?.setNotifyWidget((){
       if(mounted)
         setState(() {

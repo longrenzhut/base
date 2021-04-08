@@ -47,6 +47,7 @@ class _PtrWidgetState extends BaseWidgetState<PtrWidget,PtrController> {
 
     controller.setRequestFun(request);
     if(widget.initFuture)
+      widget.viewModel.setBusy();
       controller.request();
   }
 
@@ -89,6 +90,7 @@ class _PtrWidgetState extends BaseWidgetState<PtrWidget,PtrController> {
     }
     if(controller.state == 1){
       controller.init = false;
+      widget.viewModel.loadOk();
       return widget.builder(context);
     }
 

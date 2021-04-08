@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: BaseUtils.createMaterialColor(Colors.white),//主题色
+        primarySwatch: BaseUtils.createMaterialColor(Colors.blue),//主题色
         primaryColor: Colors.white,//导航栏颜色
         canvasColor: CstColors.bgColor,//画布颜色
       ),
