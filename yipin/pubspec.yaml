@@ -27,75 +27,23 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-#  cupertino_icons: ^1.0.0
-  # State
-  provider: ^5.0.0
+  base:
+    path: ../yipin/base/
 
-  dio: ^4.0.0-beta7
-  bot_toast: ^4.0.0+1
-  shared_preferences: ^2.0.3
-    #路由
-  fluro: ^2.0.3
-#  thrio: ^1.7.6
+  animate_do: ^2.0.0
+    #  权限
 
-#    微信支付以及登录
-  fluwx: ^3.3.2
-  #UI
-  pull_to_refresh: ^1.6.4
+
 #  lazy_load_refresh_indicator:
 #  tab_indicator_styler: ^1.0.0
-#控件库
-#  getwidget: ^1.2.4
-  getwidget: ^2.0.0-nullsafety.3
+#  getwidget: ^2.0.0-nullsafety.3
 #  柱状图
-  charts_flutter: ^0.10.0
+#  charts_flutter: ^0.10.0
 #  动画
-  animate_do: ^2.0.0
-
-  #生命周期监听
-  lifecycle: ^0.1.1+1
   #轮播
 #  flutter_swiper:
   #图片缓存
-#  cached_network_image: ^2.5.1
-  cached_network_image: ^3.0.0-nullsafety
-  #  paulonia_cache_image:
-
-  #插件
-  device_info: ^2.0.0
-  package_info: ^2.0.0
-  open_settings: ^1.0.3
-#  权限
-  permission_handler: ^6.0.1
-
-  #适配
-#  flutter_screenutil: ^4.0.3+3
-  flutter_screenutil: ^5.0.0-nullsafety.7
-  mime_type: ^0.3.2
-
-#  flutter_common_utils: ^1.1.0
-
-  #  图片选择器
-  file_picker: ^3.0.0
-  image_picker: ^0.7.2
-  image_picker_for_web: ^2.0.0
-
-  url_launcher: ^6.0.2
-  #  缓存本地
-#  sqflite_common_ffi:
-  #    级联选择器
-  #  cascade_picker: ^0.0.4+1
-
 #  webview_flutter: ^2.0.2
-  #  web_browser:
-
-#  universal_html:
-#  flutter_widget_from_html_core: ^0.5.1+4
-
-  #  rxdart:
-  #  event_bus:
 
 dev_dependencies:
   flutter_test:
