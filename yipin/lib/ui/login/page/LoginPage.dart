@@ -1,9 +1,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:yipin/base/base/adapter/BaseAdapter.dart';
-import 'package:yipin/base/base/common/PtrSliverListWidget.dart';
-import 'package:yipin/base/base/page/BasePage.dart';
+import '../../../base/base/adapter/BaseAdapter.dart';
+import '../../../base/base/common/PtrSliverListWidget.dart';
+import '../../../base/base/page/BasePage.dart';
 
 import '../../../base/router/RouterHelper.dart';
 import '../../../base/router/routes.dart';
@@ -21,10 +21,6 @@ class _LoginPageState extends BasePageState<LoginPage,LoginVM> {
   LoginVM getViewModel() =>  LoginVM();
 
 
-  @override
-  Future request() {
-    return viewModel.loadData();
-  }
 
   @override
   Widget getView(BuildContext context) {
@@ -46,7 +42,7 @@ class _LoginPageState extends BasePageState<LoginPage,LoginVM> {
         )
       ],
       viewModel: viewModel,
-      future: request,
+      future: viewModel.loadData,
       itemExtent: 100,
       adapter: BaseAdapter<String>(
           data: viewModel.list,

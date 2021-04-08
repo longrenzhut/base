@@ -41,7 +41,7 @@ dependencies:
 #  thrio: ^1.7.6
 
 #    微信支付以及登录
-  fluwx: ^2.6.2
+  fluwx: ^3.3.2
   #UI
   pull_to_refresh: ^1.6.4
 #  lazy_load_refresh_indicator:

@@ -29,17 +29,8 @@ class BaseApp{
     await Cache.initSp();
     LoginUtils.instance().init();
     ChangeUtils.init();
-
-    // if (Platform.isIOS || Platform.isAndroid) {
-    //
-    // }
   }
 
-  // var locator = GetIt();
-  // void setupLocator() {
-  //   TelAndSmsServic
-  //   locator.registerSingleton(TelAndSmsService());
-  // }
 
 
 
