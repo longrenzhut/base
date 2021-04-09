@@ -25,6 +25,7 @@ abstract class BasePageState<T extends StatefulWidget,K extends BaseViewModel> e
 
     if(isUseHeader)
       viewModel.setAppBarController(controller);
+
     viewModel?.setNotifyWidget((){
       if(mounted)
         setState(() {

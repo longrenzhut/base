@@ -3,6 +3,7 @@ import 'package:base/base/adapter/BaseAdapter.dart';
 import 'package:base/base/common/PtrSliverListWidget.dart';
 import 'package:base/base/page/BasePage.dart';
 import 'package:base/utils/WidgetUtils.dart';
+import 'package:base/widget/TextView.dart';
 import 'package:flutter/material.dart';
 import 'package:yipin/common/router/MyRouter.dart';
 import 'package:yipin/main/viewmodel/LoginVM.dart';
@@ -17,7 +18,6 @@ class _LoginPageState extends BasePageState<LoginPage, LoginVM> {
 
   @override
   LoginVM getViewModel() =>  LoginVM();
-
 
 
   @override

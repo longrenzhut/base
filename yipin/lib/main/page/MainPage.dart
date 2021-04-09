@@ -1,6 +1,7 @@
 
 import 'package:base/base/page/BasePage.dart';
 import 'package:base/widget/MyIndexStack.dart';
+import 'package:base/widget/TextView.dart';
 import 'package:base/widget/tab/BottomBarWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:yipin/main/viewmodel/MainVM.dart';
@@ -14,6 +15,16 @@ class _MainPageState extends BasePageState<MainPage,MainVM> {
 
   @override
   MainVM getViewModel() =>  MainVM();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.setTitle("测试",children:[
+      TextView("测试")
+    ] );
+  }
+  
+
 
   @override
   Widget getView(BuildContext context) {

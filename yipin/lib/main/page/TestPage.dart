@@ -7,6 +7,7 @@ import 'package:base/utils/ImageHelper.dart';
 import 'package:base/utils/ToastUtil.dart';
 import 'package:base/utils/WidgetUtils.dart';
 import 'package:base/widget/AnimWidget.dart';
+import 'package:base/widget/TextView.dart';
 import 'package:base/widget/tab/TabPageWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,14 @@ class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
   int get type => arguments["type"]??0;
 
   @override
+  void initState() {
+    super.initState();
+    controller.setTitle("测试",children:[
+      TextView("测试")
+    ] );
+  }
+
+  @override
   Widget getView(BuildContext context) {
     if(type == 1)
       return _tabWidget();
@@ -48,16 +57,10 @@ class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
       slivers: [
         WidgetUtils.buildSliverPadding(
             padding: EdgeInsets.all(20.0),
-            child: Text("头部").buildInkWell(() => showBottomSheet(
-                context: context,
-                builder: (context) {
-                  return Container(height: 30, color: Colors.lightBlue);
-                }))
-        ),
-        WidgetUtils.buildSliverPadding(
-            padding: EdgeInsets.all(20.0),
-            child: Text("charts").buildInkWell(() =>
-                MyRouter.buildTest(context,type: 2)
+            child: Text("charts").buildInkWell(() {
+              controller.setTitle("111111");
+              controller.notifyUI();
+            }
             )
         ),
         WidgetUtils.buildSliverPadding(

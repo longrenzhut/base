@@ -64,16 +64,17 @@ class BaseViewModel with ChangeNotifier,ViewModelMixin{
     super.dispose();
   }
 
-  //主要是头部按钮隐藏
+  //开始请求接口
   void setBusy(){
     _controller?.loadOk = false;
-
   }
 
-  //网络加载完成
-  void loadOk(){
-    _controller?.loadOk = true;
-    _controller?.notifyUI();
+  //接口请求成功
+  void loadOk() async{
+    await Future.delayed(Duration(milliseconds: 200)).then((e) {
+      _controller?.loadOk = true;
+      _controller?.notifyUI();
+    });
   }
 
   Widget get selfWidget => null;

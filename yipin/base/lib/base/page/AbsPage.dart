@@ -46,12 +46,8 @@ abstract class AbsPageState<T extends StatefulWidget> extends State<T> with Base
   @override
   void initState() {
     super.initState();
-    initPage();
   }
 
-  void initPage(){
-
-  }
 
   @override
   Widget build(BuildContext context) {

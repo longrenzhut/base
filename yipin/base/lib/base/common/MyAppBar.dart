@@ -1,4 +1,5 @@
 
+import 'package:base/utils/BaseUtils.dart';
 import 'package:base/utils/CstColors.dart';
 import 'package:flutter/material.dart';
 import 'package:base/utils/ImageHelper.dart';
@@ -33,12 +34,12 @@ class MyAppBar extends AppBar{
         WidgetUtils.buildProvider<AppBarController>(
             model: controller,
             builder: (context,model){
-              if(!model.loadOk)
+              if(!model.loadOk )
                 return SizedBox.shrink();
               return Row(
                 children: [
                   ...controller.children??[],
-                  controller.tvRightText.isEmpty ? SizedBox.shrink() :
+                  BaseUtils.isEmpty(controller.tvRightText) ? SizedBox.shrink() :
                   Container(
                     margin: EdgeInsets.only(left: 4),
                     child: TextView(controller.tvRightText,size: 16, color: CstColors.cl_00AC96,).buildInkWell(() {
@@ -58,17 +59,17 @@ class MyAppBar extends AppBar{
 class AppBarController with ChangeNotifier{
 
   String title;
-  String ivLeftIcon;
+  String ivLeftIcon = "ic_back.png";
   Function() leftFunc;
 
   Color bgColor;
-  String tvRightText;
+  String tvRightText ="";
   Function() rightFun;
 
   List<Widget> children;
 
 
-  bool loadOk = false;//是否加载完成
+  bool loadOk = true;//是否加载完成
 
   AppBarController({this.leftFunc});
 
@@ -81,16 +82,17 @@ class AppBarController with ChangeNotifier{
   void setTitle(String title,{Color bgColor:Colors.white,
     String ivLeftIcon:"ic_back.png",
     String tvRightText:"",
-    Function() rightFun,
-
     List<Widget> children,
   }){
     this.title = title;
     this.bgColor = bgColor;
     this.ivLeftIcon = ivLeftIcon;
-    this.tvRightText = tvRightText;
-    this.rightFun = rightFun;
-    this.children = children;
+    if(!BaseUtils.isEmpty(tvRightText))
+      this.tvRightText = tvRightText;
+    if(null != children)
+      this.children = children;
+
+    // notifyUI();
   }
 
 }
