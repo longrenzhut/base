@@ -17,6 +17,9 @@ import 'package:yipin/main/page/MainPage.dart';
 import 'package:yipin/main/viewmodel/LoginVM.dart';
 import 'package:yipin/main/viewmodel/TestVM.dart';
 
+import 'package:accessibility/accessibility.dart';
+
+
 
 
 class TestPage extends StatefulWidget {
@@ -58,8 +61,7 @@ class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
         WidgetUtils.buildSliverPadding(
             padding: EdgeInsets.all(20.0),
             child: Text("charts").buildInkWell(() {
-              controller.setTitle("111111");
-              controller.notifyUI();
+              Accessibility.repeatPicByWx(4);
             }
             )
         ),

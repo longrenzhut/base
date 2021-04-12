@@ -30,6 +30,9 @@ dependencies:
   base:
     path: ../yipin/base/
 
+  accessibility:
+    path: ../yipin/accessibility/
+
   animate_do: ^2.0.0
     #  权限
 
