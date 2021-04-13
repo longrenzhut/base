@@ -1,3 +1,4 @@
+import 'package:accessibility/accessibility.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:base/base/adapter/BaseAdapter.dart';
 import 'package:base/base/common/PtrSliverListWidget.dart';
@@ -10,14 +11,10 @@ import 'package:base/widget/AnimWidget.dart';
 import 'package:base/widget/TextView.dart';
 import 'package:base/widget/tab/TabPageWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:yipin/common/router/MyRouter.dart';
 import 'package:yipin/main/page/LoginPage.dart';
 import 'package:yipin/main/page/MainPage.dart';
-import 'package:yipin/main/viewmodel/LoginVM.dart';
 import 'package:yipin/main/viewmodel/TestVM.dart';
-
-import 'package:accessibility/accessibility.dart';
 
 
 

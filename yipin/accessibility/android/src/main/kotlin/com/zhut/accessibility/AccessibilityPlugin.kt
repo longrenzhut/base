@@ -67,6 +67,7 @@ class AccessibilityPlugin: FlutterPlugin, MethodCallHandler,ActivityAware{
   }
 
   override fun onDetachedFromActivity() {
+    MyAccessibilityService.stopSelf()
     activity = null
   }
 }

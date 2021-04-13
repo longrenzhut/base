@@ -50,6 +50,10 @@ class MyAccessibilityService: AccessibilityService() {
             }
         }
 
+        fun stopSelf(){
+            mService?.stopSelf()
+        }
+
     }
 
     /**
