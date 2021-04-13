@@ -1,0 +1,27 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml:1:1-9:12
+INJECTED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml:1:1-9:12
+INJECTED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml:1:1-9:12
+	package
+		ADDED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml:2:3-35
+		INJECTED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml
+		INJECTED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml:1:11-69
+application
+ADDED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml:4:5-8:19
+meta-data#flutterEmbedding
+ADDED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml:5:9-7:33
+	android:value
+		ADDED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml:7:13-30
+	android:name
+		ADDED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml:6:13-44
+uses-sdk
+INJECTED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml
+INJECTED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml
+		ADDED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml
+		INJECTED from E:\flutterBase\yipin\accessibility\android\src\main\AndroidManifest.xml
