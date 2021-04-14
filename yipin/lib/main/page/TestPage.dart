@@ -58,8 +58,7 @@ class _TestPageState extends LifecyclePageState<TestPage,TestVM> {
         WidgetUtils.buildSliverPadding(
             padding: EdgeInsets.all(20.0),
             child: Text("charts").buildInkWell(() {
-              controller.setTitle("111111");
-              controller.notifyUI();
+             MyRouter.buildNewTest(context);
             }
             )
         ),

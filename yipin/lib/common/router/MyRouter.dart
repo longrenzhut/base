@@ -7,6 +7,7 @@ import 'package:base/router/RouterHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:yipin/main/page/LoginPage.dart';
 import 'package:yipin/main/page/MainPage.dart';
+import 'package:yipin/main/page/NewTestPage.dart';
 import 'package:yipin/main/page/TestPage.dart';
 
 
@@ -16,7 +17,6 @@ class MyRouter {
   static const String initRouter = "/";
   static const String main = "/main";
   static const String login = "/login";
-  static const String test = "/test";
 
   static onGenerateRoute(BuildContext context, RouteSettings settings) {
 
@@ -30,10 +30,14 @@ class MyRouter {
     return BaseApp.router.generator(settings);
   }
 
+  static const String test = "/test";
+  static const String newTest = "/test/new";
+
   static List<RouteModel> tabList = [
     RouteModel(login,"首页",LoginPage()),
     RouteModel(main,"首页",MainPage()),
     RouteModel(test,"首页",TestPage()),
+    RouteModel(newTest,"首页",NewTest()),
   ];
 
 
@@ -52,6 +56,10 @@ class MyRouter {
 
   static buildMain(BuildContext context){
     RouterHelper.build(context,main);
+  }
+
+  static buildNewTest(BuildContext context){
+    RouterHelper.build(context,newTest);
   }
 
   static buildLogin(BuildContext context){
